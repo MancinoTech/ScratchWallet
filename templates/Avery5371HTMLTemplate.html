@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            font-size: 36pt;
+        }
+
+        h2 {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            font-size: 28pt;
+        }
+
+        h3 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 24pt;
+        }
+
+        h4 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 18pt;
+        }
+
+        p {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 18pt;
+        }
+
+        table {
+            padding: 5px;
+            margin: 0;
+            display: block;
+            table-layout: fixed;
+
+        }
+
+        td {
+            display: block;
+            border: 1px solid black;
+        }
+
+        .wallet {
+            padding: 0px;
+            margin: 0px;
+            width: 1050px;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .wallet-container {
+            padding: 0px;
+            margin: 0px;
+            width: 1030px;
+            height: 580px;
+            overflow: hidden;
+        }
+
+        .info-area {
+            margin: 0px;
+            padding: 0px;
+            width: 390px;
+            height: 580px;
+            overflow: hidden;
+        }
+        .key-area {
+            margin: 0px;
+            padding: 0px;
+            width: 610px;
+            height: 580px;
+            overflow: hidden;
+        }
+        .sn-area {
+            margin: 0px;
+            padding: 0px;
+            width: 30px;
+            height: 580px;
+            word-wrap:break-word;
+            text-align: center;
+        }
+
+        .pubkey-info {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+            padding: 0px;
+            width: 450px;
+            height: 450px;
+            overflow: hidden;
+        }
+        .add-qr {
+            margin: 0px;
+            padding: 0px;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+        }
+        .key-text {
+            margin: 0px;
+            padding: 0px;
+            width: 450px;
+            height: 150px;
+            overflow: hidden;
+
+        }
+        .key-extra {
+            padding: 0px;
+            width: 150px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+    </style>
+</head>
+
+<body>
+    <table name="Avery5371InnerFront" class="sheetObjects">
+        <tr>
+            <td class="wallet" name="Wallet0" id="0f">
+                <table class="wallet-container" name="WalletContainer0">
+                    <tr>
+                        <td class="info-area" id="ia">
+                            <div>
+                                <h1>Crypto Cheque</h1>
+                                <h2>Blockchain:
+                                    {{Blockchain}}</h2>
+                                <p>Use the public address to deposit and verify funds in this cheque. Any
+                                    digital
+                                    assets
+                                    deposited become
+                                    physically represented by this card until the private keys are exposed by
+                                    scratching
+                                    the seal.</p>
+                                <h3>Number of Keys:</h3>
+                                <h4>Single Key: 1 of 1</h4>
+                            </div>
+                        </td>
+                        <td class="key-area" id="ka">
+                            <table class="pubkey-info">
+                                <tr>
+                                    <td class="add-qr">
+                                        <div class="add-qr">
+                                            {{PubKeyQR}}
+                                        </div>
+                                    </td>
+                                    <td class="key-extra">Placeholder</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="key-text">{{PubKeyAddress}}<br>{{PubKeyHex}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="sn-area" id="sa">
+                            <h3>{{serialNo}}</h3>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="wallet" name="Wallet1" id="1f">
+                <table class="wallet-container" name="WalletContainer1">
+                    <tr>
+                        <td class="info-area"></td>
+                        <td class="key-area"></td>
+                        <td class="sn-area"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="wallet" name="Wallet2" id="2f">
+                <table class="wallet-container" name="WalletContainer2">
+                    <tr>
+                        <td class="info-area"></td>
+                        <td class="key-area"></td>
+                        <td class="sn-area"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="wallet" name="Wallet3" id="3f">
+                <table class="wallet-container" name="WalletContainer3">
+                    <tr>
+                        <td class="info-area"></td>
+                        <td class="key-area"></td>
+                        <td class="sn-area"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="wallet" name="Wallet4" id="4f">
+                <table class="wallet-container" name="WalletContainer4">
+                    <tr>
+                        <td class="info-area"></td>
+                        <td class="key-area"></td>
+                        <td class="sn-area"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="wallet" name="Wallet5" id="5f">
+                <table class="wallet-container" name="WalletContainer5">
+                    <tr>
+                        <td class="info-area"></td>
+                        <td class="key-area"></td>
+                        <td class="sn-area"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="wallet" name="Wallet6" id="6f">
+                <table class="wallet-container" name="WalletContainer6">
+                    <tr>
+                        <td class="info-area"></td>
+                        <td class="key-area"></td>
+                        <td class="sn-area"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="wallet" name="Wallet7" id="7f">
+                <table class="wallet-container" name="WalletContainer7">
+                    <tr>
+                        <td class="info-area"></td>
+                        <td class="key-area"></td>
+                        <td class="sn-area"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="wallet" name="Wallet8" id="8f">
+                <table class="wallet-container" name="WalletContainer8">
+                    <tr>
+                        <td class="info-area"></td>
+                        <td class="key-area"></td>
+                        <td class="sn-area"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="wallet" name="Wallet9" id="9f">
+                <table class="wallet-container" name="WalletContainer9">
+                    <tr>
+                        <td class="info-area"></td>
+                        <td class="key-area"></td>
+                        <td class="sn-area"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table name="Avery5371InnerBack" class="sheetObjects">
+        <tr>
+            <td class="wallet" name="Wallet1" id="1b">
+                <table class="wallet-container" name="WalletContainer1">
+                    <tr>
+                        <td class="sn-area"></td>
+                        <td class="key-area"></td>
+                        <td class="info-area"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="wallet" name="Wallet0" id="0b">
+                <table class="wallet-container" name="WalletContainer0">
+                    <tr>
+                        <td class="sn-area"></td>
+                        <td class="key-area"></td>
+                        <td class="info-area"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="wallet" name="Wallet3" id="3b">
+                <table class="wallet-container" name="WalletContainer3">
+                    <tr>
+                        <td class="sn-area"></td>
+                        <td class="key-area"></td>
+                        <td class="info-area"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="wallet" name="Wallet2" id="2b">
+                <table class="wallet-container" name="WalletContainer2">
+                    <tr>
+                        <td class="sn-area"></td>
+                        <td class="key-area"></td>
+                        <td class="info-area"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="wallet" name="Wallet5" id="5b">
+                <table class="wallet-container" name="WalletContainer5">
+                    <tr>
+                        <td class="sn-area"></td>
+                        <td class="key-area"></td>
+                        <td class="info-area"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="wallet" name="Wallet4" id="4b">
+                <table class="wallet-container" name="WalletContainer4">
+                    <tr>
+                        <td class="sn-area"></td>
+                        <td class="key-area"></td>
+                        <td class="info-area"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="wallet" name="Wallet7" id="7b">
+                <table class="wallet-container" name="WalletContainer7">
+                    <tr>
+                        <td class="sn-area"></td>
+                        <td class="key-area"></td>
+                        <td class="info-area"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="wallet" name="Wallet6" id="6b">
+                <table class="wallet-container" name="WalletContainer6">
+                    <tr>
+                        <td class="sn-area"></td>
+                        <td class="key-area"></td>
+                        <td class="info-area"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="wallet" name="Wallet9" id="9b">
+                <table class="wallet-container" name="WalletContainer9">
+                    <tr>
+                        <td class="sn-area"></td>
+                        <td class="key-area"></td>
+                        <td class="info-area"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="wallet" name="Wallet8" id="8b">
+                <table class="wallet-container" name="WalletContainer8">
+                    <tr>
+                        <td class="sn-area"></td>
+                        <td class="key-area"></td>
+                        <td class="info-area"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+
+    <Table>
+        <tr>
+            <td>
+                <h1>Crypto Cheque</h1>
+                <h2>Blockchain:
+                    {{Blockchain}}</h2>
+                <p>Use the public address to deposit and verify funds in this cheque. Any digital assets deposited
+                    become physically represented by this card until the private keys are exposed.</p>
+                <h3>Number of Keys:</h3>
+                <p>Single Key: 1 of 1</p>
+                <h3>Public Address:</h3>
+            </td>
+            <td>
+                <table width="80%">
+                    <tr>{{pubQR}}</tr>
+                    <tr>{{pubAddress}}</tr>
+                    <tr>{{pubKey}}</tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <p>This card is known as a scratch wallet. It is used to represent a digital asset or funds
+                                in the physical world. You can consider assets or funds stored to this wallet
+                                “withdrawn” from the blockchain.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>{{serial}}</td>
+        </tr>
+    </Table>
+    <div id="card-front">
+        <div id="text-area-front" style="float: left;">
+            <h1>Crypto Cheque</h1>
+            <h2>Blockchain:
+                {{Blockchain}}</h2>
+            <p>Use the public address to deposit and verify funds in this cheque. Any digital assets deposited become
+                physically represented by this card until the private keys are exposed.</p>
+            <h3>Number of Keys:</h3>
+            <p>Single Key: 1 of 1</p>
+            <h3>Public Address:</h3>
+        </div>
+        <div id="pub-key-area"></div>
+        <div id="pub-area-left">
+            <div id="pub-qr-area">{{pubQR}}</div>
+            <div id="pub-add-text">{{pubAddress}}</div>
+            <div id="pub-key-text">{{pubKey}}</div>
+        </div>
+        <div id="pub-area-right">
+            <div id="info-text">
+                <p>This card is known as a scratch wallet. It is used to represent a digital asset or funds in the
+                    physical world. You can consider assets or funds stored to this wallet “withdrawn” from the
+                    blockchain.</p>
+            </div>
+        </div>
+
+        <div id="serial-num-front" style="transform: rotate(-90deg); float: right;">
+            <h3>{{serial}}</h3>
+        </div>
+    </div>
+    <div id="card-back">
+        <div id="serial-num-back" style="transform: rotate(90deg);">
+            <h3>{{serial}}</h3>
+        </div>
+        <div id="private-key-area">
+
+            <div id="priv-area-left">
+                <div id="seed-text">Appologies: The seed text is not available in on this version of the Crypto Cheque.
+                    Please use one of the other 3 methods to the right.</div>
+            </div>
+            <div id="priv-area-right">
+                <div id="priv-qr-area">{{privQR}}</div>
+                <div id="priv-add-text">{{WIF}}</div>
+                <div id="priv-key-text">{{privKey}}</div>
+            </div>
+
+
+        </div>
+        <div id="text-area-back">
+            <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+            <ul>
+                <li>Part or all of the private key is exposed </li>
+                <li>Seal appears to be tampered with </li>
+                <li>You can’t see all lines around the scratch area </li>
+                <li>Authentication app says it’s a forgery or the security image doesn’t match. </li>
+            </ul>
+            <h3>To Deposit:</h3>
+            <p>Scratch off the surface and use the private key to transfer crypto into your regular wallet.</p>
+            {{SecImage}}
+        </div>
+    </div>
+    <h1></h1>
+    <script>
+        let wallet = document.getElementById("0f")
+        let container = document.getElementById("ka")
+        let info = document.getElementById("ia")
+        let key = document.getElementById("ka")
+        let sn = document.getElementById("sa")
+
+
+        console.log("Wallet: " + wallet.offsetWidth + "x" + wallet.offsetHeight + " Container: " + container.offsetWidth + "x" + container.offsetHeight)
+        console.log("Info: " + info.offsetWidth + "x" + info.offsetHeight + " Key: " + key.offsetWidth + "x" + key.offsetHeight + " SN: " + sn.offsetWidth + "x" + sn.offsetHeight)
+    </script>
+         /*
+
+
+
+
+
+
+
+         .pubkey-info {
+             width: 610px;
+             height: 580px;
+             max-width: 610px;
+             max-height: 580px;
+             table-layout: fixed;
+             align-self: center;
+             padding-top: 65px;
+             padding-bottom: 65px;
+             padding-left: 80px;
+             padding-right: 80px;
+         }
+ 
+         .add-qr {
+             width: 300px;
+             height: 300px;
+             max-width: 300px;
+             max-height: 300px;
+             table-layout: fixed;
+             
+             align-items: center;
+             vertical-align: middle;
+         }
+ 
+         .key-extra {
+             width: 150px;
+             height: 300px;
+             max-width: 150px;
+             max-height: 300px;
+             table-layout: fixed;
+         }
+ 
+         .key-text {
+             height: 150px;
+             max-height: 150px;
+             column-span: 2;
+             table-layout: fixed;
+         }
+ 
+
+         
+  */
+         .lastStyle {}
+</body>
+
+</html>
+

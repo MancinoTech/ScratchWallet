@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <label for="key">Enter a Bitcoin public key or address:</label><br>
+        <input type="text" id="key" name="key"><br><br>
+        <button onClick="checkPubKey()">Check Public Key</button>
+    </form>
+
+    <script src="https://unpkg.com/bitcoinjs-lib@4.0.2/build/bitcoinjs-lib.min.js"></script>
+    <script type="module"></script>
+    <script>
+        import * as Bitcoin from "/scripts/bitcoinjs-lib.js"
+        function checkPubKey() {
+        // Get the user's input
+        var input = document.getElementById("key").value;
+        console.log(input)
+
+        var valid = Bitcoin.ECPair.fromBase58Check(input)
+        console.log(valid)
+        var val = Bitcoin.Buffer
+        // Check if the input is a valid public key or address using the bitcoinjs-lib library
+        try {
+            
+            var key = Bitcoin.ECPair.fromPublicKeyBuffer(Buffer.from(input, "hex"));
+            console.log("The input is a valid public key");
+        } catch (e) {
+            try {
+                var address = Bitcoin.address.fromBase58Check(input);
+                console.log("The input is a valid address");
+            } catch (e) {
+                console.log("The input is not a valid public key or address");
+            }
+        }
+    }
+    </script>
+
+</body>
+
+</html>

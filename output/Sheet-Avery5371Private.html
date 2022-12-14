@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @media print {
+            @page {
+                size: 2550px 3300px;
+            }
+        }
+
+        .info-pane {
+            flex: 0 0 390px;
+        }
+
+        .key-box {
+            position: relative;
+            margin-left: 78px;
+            margin-top: 63px;
+            width: 450px;
+            height: 450px;
+        }
+
+        .private {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background-color: #808080;
+            color: #696969;
+        }
+
+        .qr-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+        }
+
+        .key-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 450px;
+            height: 150px;
+        }
+
+        .qr-image-priv {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+        }
+
+        .key-info-priv {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 300px;
+        }
+
+        .key-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 450px;
+            height: 150px;
+        }
+
+        .key-info {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 300px;
+        }
+
+        .key-pane {
+            display: flex;
+            flex: 0 0 600px;
+            border: 2px solid black;
+        }
+
+        .sn-pane {
+            flex: 0 0 30px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            overflow: hidden;
+            letter-spacing: 1.5em;
+        }
+
+        .wallet {
+            display: flex;
+            border: 1px dashed black;
+            padding: 10px;
+            width: 1030px;
+            height: 580px;
+
+        }
+
+        .wallet-row {
+            height: 600px;
+            width: 1050px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .wallet-sheet {
+            height: 3000px;
+            width: 2100px;
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: auto;
+            margin-right: auto;
+
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+
+        }
+
+        .avery5371 {
+            height: 3300px;
+            width: 2550px;
+            align-items: center;
+            vertical-align: middle;
+            display: flex;
+            page-break-after: always;
+        }
+
+        .signature-box {
+            width: 580px;
+            text-align: center;
+            margin-top: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .scratch-row {
+            height: 150px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .scratch-date {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .scratch-image {
+            display: flex;
+            align-items: center;
+
+        }
+
+        img {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        p {
+            margin: 1em;
+            margin-top: 0em;
+            text-align: justify;
+            font-size: 16pt;
+        }
+
+        p.keys {
+            font-size: 11pt;
+            font-weight: 600;
+            margin-top: 1em;
+            text-align: left;
+            word-wrap: break-word;
+            word-break: break-all;
+            line-height: 2em;
+        }
+
+        h1 {
+            font-size: 38pt;
+        }
+
+        h2 {
+            font-size: 32pt;
+        }
+
+        h3 {
+            font-size: 28pt;
+        }
+
+        h4 {
+            font-size: 20pt;
+        }
+
+        .some-style {}
+    </style>
+</head>
+
+<body>
+    <div class="avery5371" name="Private Page">
+        <div class="wallet-sheet">
+            <div class="wallet-row">
+                <div class="wallet w0">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">8733F416B3CF</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyCAIAAABnRsZeAAAHIElEQVR4nO3cwY1jORZFwalBG1KmytQypT0gBsPDeqQyYi/pK1M44OKCvz6fz38AOv+dfgDg28gKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFi/0x98J8/f6Y++pDfv3//369d/zXW77zz2rU733nqqV6089fY4bQCxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsTGVrZrU+vAtZ0V5rkF584m9cV3ntrgft9v8hynFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgdunKdm1qsXrundff6NyedW1qwXlu3XvOi7/Jc5xWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoDYkyvbF03d/Dq10F3buXH2xQ3uT+O0AsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLErGz/kqlbcnfsbGF31q6Wsq9zWgFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYk+ubM/tSs85t1idutt1agt753//zqea4rQCxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsQuXdm6zfTvmFr3Tt2Du7OF9Zv83zmtADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrACxsZXtT7v7c+f7Tt1Wu+Pc//fc9/1pv8lznFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgNjYyvbFbej3PfPUN5q6cfbO23nPvXaK0woQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKELv0Ltvv27Oe+9xzr51a6L64Kz33zHd+3zWnFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgduldtlM3g+4sR+/cDe/8rV68n/Xcf+HO39WdnFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgNivz+cz/QyxO/e7d25wp7awL5q6q/jFha7TChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQ+3F32a69uIVdO/fM37cqvvNz7/xLrjmtADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrACxL7zLdu3Fm0HPrYp/2jvfuQz+vhuFnVaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgNjYXbZrdy4p71yO7ji3K71zR7vjzs+9k9MKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChC7dGW7485N6vq15575xZtQd57q3Lp3you3LzutADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrACxsZXtznbwzjtWd9x5e+va1D245975zs3xi5xWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoDYk3fZTt1Wu2NqR3vuXtgX71hdO7dXfvEXu8NpBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIXbqynbq9dedzz92SO/XOd94Z/OIzf98iec1pBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIXbqynXJu3/niVnLtzvtZ79zgTr3zFKcVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSD241a2OyvMF3e051and944e+6e46l3vvN3tea0AsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLExla25+4r3XHunc9tNO9cYd65HJ36/37f5645rQAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAsbGV7bnV6ZQ7165rO8985122O84tVs/9re781TmtADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrACxsZXt2p3bQdvQyvc91TkvbnCdVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaA2KUr27UXd5Z33mb6fQvd9ee+eIPynTvaNacVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSD25Mr2p7lzg7vj3Db0zp30DnfZAsgKUJMVICYrQExWgJisADFZAWKyAsRkBYhZ2V5hZyu5s6Scugf3xf3u2tQtue6yBX4EWQFisgLEZAWIyQoQkxUgJitATFaAmKwAsSdXtncuC3fcuUk9t6Od+r533ke7NrXf3eG0AsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLELl3ZvrgsnDK14Jx67TnnNrg73/fFTbnTChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQ+/X5fKafAfgqTitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChD7F8F9HtV1wB1KAAAAAElFTkSuQmCC" width=300 height=300 alt="Wallet Import Format (WIF) Address"></div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: 5JNSECqS9pdTACvRTAy8Vw9jo1q326XBXbKm37qMEy9swPiBBNa<br>Private Key: 48ff99384acbca567acbbad8a0bc94ec0aa575d0069f86de012b42d968137c93</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular wallet.
+                        </p>
+                        <img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode - Low Resolution">
+                    </div>
+                </div>
+                <div class="wallet w1">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">AFA1CD9823CD</h4>
+                    </div>
+                    <div class="key-pane private private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyCAIAAABnRsZeAAAHIUlEQVR4nO3cS64cNxQFQT/DC9FSe6laiqceEQaY1GVVR0wF9afUSnBwwJ/P5/MXQOfv6Q8AvI2sADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUg9s/UG//+/XvqrQ/59evX4k/X33fn755z7lOtX3nHE5/zOeee85rTChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQG1vZrk2tA9fuXLuec26xeu5JnntWfpP/n9MKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChC7dGW79sSN5trOnvXcK++877mbfe/0vt/kDqcVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSD2yJXtt9lZcJ5b6O7Y2eCee18qTitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQMzK9g85d7frzib13J51x7fdg/s+TitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQOyRK9snLinPbWGn9rt3/itMfeY7n8YUpxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVIHbpyvbOO1bPOXdb7ZQ7l8E7nvivMMVpBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIja1sv+3uz6nve+f73nnD7rf9Js9xWgFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYmMr252bQXfWkOduJH3iRvPcYnXqOU99oztvI576TTqtADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrACxsZXtms3in3nfqcXq2s773rnB/TZOK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitA7NKV7Z37zvfdZnruG7nZ94ZXnuK0AsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLELl3Zru0sC3cWjXfeZTv1NHZM7ZXft2e9k9MKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChC7dGV7bg155320U9vfqftop1753Pe13/0vpxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVIDa2sp26RXXt3Ab3ifvdnU9159NYO/d91+78v7DDaQWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiP18Pp/pz/BHve/e0LUn3rF652e+cws7dRvxmtMKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChAbu8t2x/vWn+fWkOfe99x9tO9bQk/dkTzFaQWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiI2tbO9cf55bjq7d+amm3nft3KeaWru+b4PrtALEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxH4+n8/IG09tFndM3Ti744nL0SlP/OXcyWkFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYiN3WV75452533vvPl1x7c95yfeGnvnp3JaAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFiYyvbHU9cQ65Nfao7t6E73rd1fiKnFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgNrayfd89qXfeznvnN7rzWe288hOf5DlOK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitAbGxle+c6cO3bbpw9Z2pjfe5Jnlvo7vzdqV+O0woQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEPu6u2zPWS8ad+6UvfPe37U7b6vded9zi9Wd38adnFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgNjYynbtzttbp+4r/banMbU6nbrpdmeffSenFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgdunKdu2JO8s7nVt/3nkD69Sn2nlWT/xNOq0AMVkBYrICxGQFiMkKEJMVICYrQExWgJisALFHrmyf6NwmdWo5eu523qlXvnML+8RbkJ1WgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYle3L3XkT6tRy9M4d7fs4rQAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAsUeubJ+4dzx3W+0Tb1Gdun93x7nP/L5n5bQCxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsQuXdk+cVm4Y2dnObX+XJu6rfbOZfDUK09xWgFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYj+fz2f6MwCv4rQCxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrACxfwFnTAGVPNtoHAAAAABJRU5ErkJggg==" width=300 height=300 alt="Wallet Import Format (WIF) Address"></div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: 5JMqXL4VVpuySpjUBaoVjY2tjA7NetuVZmVgrCJEvVQJ3ZnpRg1<br>Private Key: 47a3c919067313791c2e979be47148a92be7586c040a7b952f840d56deae4f4f</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular wallet.
+                        </p>
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAAAyCAYAAAC+jCIaAAAHJElEQVR4nO2dzYtcRRDAfzPzsu7MkmQ2G0Vy0X9APAgxGBI/SKKiF4+iBwkIil9RdDW6akx09WAwKIJ4iAp6FBRviV8xJ/8BPagYQVTUrK66m3XjzHiobrKEnddVO9157+3OD4YO2NRW96vurq6ubmtAF/gT6FFOasBGYJa4OqaSa5WdUo+iGM0Qo7oCOF2sLn2ZAE4CO9DpWANarsxjE3AM2APMKOT2gHl0H9+is7V9ZSGvnx/IgCbwONJpZaQFjKPX8TRwBDgbqNdxv9+APxRy1wH7EEMIYdHZ2r6ykNfPf2fuHw33KyMNZFRodGwB9wJHCY/+xnlliA3AFPAuYQOw6GypWxZC/VwH+B2ZtcpKE/gGnY5N4Ftgs6LuZuA7ZLbQMO5kjyjqjmDTWVu3LIT6eTJDRssYcOZCaWVkDBkBGh3HCPtWS6khnaOZKTYBGXA5YZ9s3MnU6qxtX1kI9nOW9x9XOR2gDXyBzrdpAFsQh78TqNsCLlLUW7WsZcMCGXlvAS8q6lp2kfuB+wdTrdpUybA0o79zXplHF9npzSB+Zoi/kB3QKWAxUHfGye4q5Fp0rgxVMawacDFhX2iTq6OpOwp8CdyILFshWkioYZrw0nmdk70eMbA8LDoD/EcFgqlVMKwOstXX+DYWP6iHfPjNwDalLhnwoKJeA5kFPye8mbDoXEP0vgoJbJeWKhhWA1mGbiLs21ij6QeQD/WMou4EcBy4gXCM7BCy07PI3a2QOwF8gm3nm4Lgsp0hHTuXXpcVM4c05BRh38biB8G5Ua+JvM+h85k8Xex+Yah+x8nVRP9T4v9+P7tZrCGxk6OU9zihBdwBvIfueOR24B3EFwlxrStPKOo2gfuc3JB/430lrUOeodPXWtdCD7GFJuEZseb0eJ3lY29bq7AUWugisakdwGeRZZ8BnsMdVwTY5cqPFXVbwF50g9tS10oLuBt4TSm7i4Rr+rKajnRGkCVwSil72v1iY5FrPbJKdfwTU/Y+zegrmqVHHpq6oDvPAwkFhMIBK8Ei19q+lI67P94blJHMCXqZ5ae/WSQqvaqCdxWmh8wo08T3s3wKVZT4WGjGutX9hpSDpT5kbHY42Zadb18yZMv4KMt799NI3ObDGH9sSBRGgA+A5yPLnQKujCWsTv66ug5dPGjIhaOH3oe0MELEY6IqOO9DKsjQsIYkoU7+kc5Zis/DtqSV+DraKb1nqGvBIjdl+yx4mVEiABkScT3E8uGG7cDb6HLI/W4i9iw47mRq0krarhxDp3PLlZq6IJ2uGWgWuZa0mbYrte2z4P3sS9D5cLnpOz4No99VqQXgZ3RZED5iGztvu4V0+o+ER1MduAw5XNYcLPvDVO19xQ3IQXdoxrDI9WkzPxG/fRbGEcP9gXDIIZS+M5khCm6lfydol8KDrtSkiljYj+RA7SKcg9QGvkLO0l5SyD6ALW3mUyQlJ2QwB5HOP6CQa0n1aWNrn4UnkH7eTbifJxCd+044Pm3mNIOPgH9cqUnztcrtAb8is0UePjQyp9RjnnPLlgat/1FzsjU6WC7OWttnwfvZmn7uEIj8L72wOiipzrC8XI2Ovo5WlxngTuBmpewtSMZCyMCawKtKHSwXZ63ts7CSfu7LakubsXIEeBPdhsOyZHUpb37bBaFKhpViO77gfhoWken/F8JLhYWVhBtKT5UMS7MNbrsyxXbc34S+VKGHVa4l3FCJoHYVDKuL6Hmc8Da47uruBW6LrIflNk0quTUkNFTqq19QDcOqI0uQZhvcJt123HoDKJXcZyl3xi8Q95ZO6D2qlbKIjNQU4QYLfot9irgZH9abRbOkWQ6X9l2IOQKzZiiD1IK/8RI71fd6pNFFb8f9sdIrxN3x+ZMFrdxU/bwd6b/DhDc0Xue+xlUFR/AksgQWresckqa9psMIjnmkL3Jnt1i3dFLdeLE8pjaOzG4HQxVLhPV2TKp+nkL6LsaOdzKUQWohRVajR+sH+jpVy3q1fINUN4v894thC9F3hbcQv9Et5ERf4weOIn7CHtIauoY6+ldscv2VKhLTsD4C/iX+B/Xrufaw+CziiGpfkElBDfgaXexN5a9UDW9YMQJ+J9C9gZCSBnJN/DC6V/pSMQG8DzyJDLY1h3/cVvvoVx5dip/O28gSNE/8RDgr691vzRrWRuIcU4w6WUX7NikcWysNih9khZIhkdwYxxRPA1cjRloUTeARin+YbM3jj3RipIIsIElwsVOTLTSAhxga1iDE8Le73seKkQri4x+x01UstAv826uBOvpbOnmsj+lj+ZspmjTfVPi0mSgPW6wx/G2tYwzuH7a9j7WTwf+XZi+48qkB5QxCG/ie4g1rAfk42uxUCymeiQTZ9LyB/tG6PB7OkOjwXQweoPMvldwzoJxBaCGz1k5gskA9xpBzy8eIH/i8xpWx27cdGZAxvt+2/wHw+bmsEumG2gAAAABJRU5ErkJggg==" width=300 height=100 alt="Security Barcode - Low Resolution">
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w2">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">9D9304CFE891</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private"><img src="data:image/png;base64,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" width=300 height=300 alt="Wallet Import Format (WIF) Address"></div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: 5K1JPy2gWnPPSPdm8xtAChLGbGakt1JUkRVLtUDR93zNAx7yPbj<br>Private Key: 9cb47190283a84cadcde2d7711cf68cc123837f1190edf7f6ec13d0548e2499f</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular wallet.
+                        </p>
+                        <img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode - Low Resolution">
+                    </div>
+                </div>
+                <div class="wallet w3">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">250C5564E4A9</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private"><img src="data:image/png;base64,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" width=300 height=300 alt="Wallet Import Format (WIF) Address"></div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: 5HrUpB763wxnDciarXBq9QgaZHmLRqXvRz7M288sLUpvjiFg9yB<br>Private Key: 04fb22097051dee2b27da024dd133cc75c0a622778170584b0ebb6079dbf09df</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular wallet.
+                        </p>
+                        <img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode - Low Resolution">
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w4">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">A44A4844E64F</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyCAIAAABnRsZeAAAHM0lEQVR4nO3c24kkNhRFUY9xIBNqhTqhOANh0JavVL3Wb9P1ZqOPg359Pp+/ADp/T78A4NvIChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYv9MPfGfP3+mnvqQ379/L/66fr87/3vO+lWt7bzfOx/5RTufxg6nFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgNrayXZtaB66dW2GeW46+6M61653fwp2fldMKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChC7dGW7dm5ZeOeScm3n0zh3/+7ai4+887w7XvxNOq0AMVkBYrICxGQFiMkKEJMVICYrQExWgJisALEnV7Y/zbkd7Y6pm33XXtykfh+nFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgZmX7Pzl3a+zOJvX77pTlBk4rQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0DsyZXtixvNO7ew57a/d66Kz/1yXvxNnuO0AsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLELl3Z7iwpX/TibbXnnndqg7v2036TO5xWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoDY2Mr2p939+X3vd2oLO3WzL/+d0woQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEBtb2e7sLHfWkOduJJ3aaN65WN2xs9A9947uvGF3beobdFoBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKX3mX7fcvRnVe181mdW6yec+dSdueRd7x4w67TChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQG1vZrk3tSs/979rUnvWcqbtd77w19sXd8A6nFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgdunK9s4t7NRy9NxW8ty+88Xd8LkblHfcuaNdc1oBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKXrmxfvAl1avv7faY+jalbkL/vt+G0AsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLELl3Znlu7nvvfc1vJqXth77xDd+eR77xx9tytwFMLXacVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSA2trJ9cTt45x26a3fehPrTFslTdyRPcVoBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWJjK9tz28FzC86pm26n/nfHudtb1498523Eay/uaNecVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaA2JN32d65WD3n3DJ4as+69n2b4x13/ibXnFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgNjYyvacO1eY525vvXM5OnWj8NQ3uOPOrfMOpxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVIDa2sr1zHTi14Dz3abx4d+/U6nTn/U49750ba6cVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSD25F22U+vPqR3t1PvdcW6v/NO2zi9yWgFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYmMr26l7Q9fWr+rOe2HPfRrn3tHUN/iiFxe6TitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQOzX5/OZfg0/wosL3anXfO7e35+27p3a4DqtADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrACxJ++yvdN60fjijnZtaoN77rOaWuhO/TbOcVoBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWJjK9u1qTs416a2oTsrzHNb2Bd3tGt3/urufFVrTitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQOzSle3a1M2v5+w879Rrnrr59fv2u1Of5DlOK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitA7MmV7YvuvDV2bWffeec7WrvzOzp3C/I5TitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQMzK9gFTq9Nz+86pZfD6ee98VS9yWgFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYk+ubKdu6NwxdRPqufto77TzOU/5vg2u0woQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKELt0ZfvisnDKuR3ti4+88793vt+1O3fDTitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQOzX5/OZfg3AV3FaAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaA2L+DOjT4oHBrXwAAAABJRU5ErkJggg==" width=300 height=300 alt="Wallet Import Format (WIF) Address"></div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: 5HrAGbaR14dxXYGM4r1mbmPWmqvYEUKLDydCWSFpUo7Q45v2oe3<br>Private Key: 044147881f7e043072589435f69e00b7bf9bcca616d039a68cc696948ed4e62d</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular
+                            wallet.
+                        </p>
+                        <img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode - Low Resolution">
+                    </div>
+                </div>
+                <div class="wallet w5">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">A0FA24FF6132</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyCAIAAABnRsZeAAAHQUlEQVR4nO3cQW4jRxBFQY/hg8xRedQ5irdeGA0D9cqZzYnYUyKb0kMtPurH5/P5A6Dz5/QbAL6NrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVIPbX1C/+9evX1K++5OfPnyO/9/lJPr+rk29h6vM+m3oaO019R04rQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BsbGX77I0LznuvfX4aJ8/q5LU71733/nK+72/yHqcVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSC2dGX77N6ycGqj+fyJTvas97xx3XvPG/8m73FaAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFir1zZvtG921tP7LwJ9dnJXvmNi9U3cloBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWJWtv+TqaXs8+9942J157vin5xWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoDYK1e2b1xSnmxDp1777I0/+Z6d72qK0woQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEFu6sn3eWbLBzntwp7a//JPTChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQG1vZ/m53f5583pM964mp7+h3+7zfx2kFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYiNrWx33gw6te88cfKe7938eu9JTn3eN752itMKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChD78fl8pt/Dv7i3wjz5vTvvWL23wtx5a+zO7+jZzr+ce5xWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoDY0rts791X+mznDawnP/nEzjtWd37eZzu/33ucVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaA2Cvvst25/ny28xbVZzu3oTu/32ff9/f8zGkFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYiNrWzvbQenbpy99553Llbv7YZ3LkdPvHFjfcJpBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWI/TX9Bv5vJ7vD79vg3vtEO3fDU3Y+q3ucVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaA2NjK9t49qW+8gXXnkvLek5zalU791f1unFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgNjSu2xP1pBv3EruvAd36knuvNvVs/rvnFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgNjYyvbenbL3TC0a7z2rnd/CyZ713o3CU3vlnd/RM6cVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSD2yrtsn91bQ+68c3TqJ5+8dmqTOrXBvWfqttpnTitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQGzpyvbEzhtJd/7kqY3m1DJ4572wO7+jE04rQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0DsC1e295aUU/fCnrh3e+uzNy5H772rNz6NE04rQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0DslSvbe4vVe3fKnrz25F3tvH935+p0ap+982mccFoBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWJjK9upO1Z3urez3Hkf7Rtv9n32/ImmduFT/ylOK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitAbGxlO7WzvGfn9nfqLts3bnCnFqvfd9Ot0woQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEBtb2T7buR28t1g9+b3PP3nnkzzZld4ztaM9ee3ODa7TChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQW7qyfXZvhXlvlfjGhe691z6793l33pJ7YueK2mkFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYi9cmXLf7dzR3ti5353au268105rQAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMSvbFXbeSHpvz3py4+zUUnbq7t6dO9pnTitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQOyVK9udy8ITU0vKez956pbce6/9vr+6e5xWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoDY0pXtyVby+9x7GlP3s5689t5+9957fvZ9616nFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUg9uPz+Uy/B+CrOK0AMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0Dsb2hpHJKDiWKrAAAAAElFTkSuQmCC" width=300 height=300 alt="Wallet Import Format (WIF) Address"></div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: 5KXkzWm1h93iaoXHcemB62S15vGzzFX7ApN28t11t2NMDDiWbui<br>Private Key: e1dd5dbb52535466ade76771a1699b9343495c4c51128d142ac10ace616d186f</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular
+                            wallet.
+                        </p>
+                        <img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode - Low Resolution">
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w6">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">08B3A1DBC26D</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private"><img src="data:image/png;base64,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" width=300 height=300 alt="Wallet Import Format (WIF) Address"></div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: 5KHQEv8aozu8YuavXQt4cLW1bqik6GoCoBJeyfvw4PWmkpWqNB5<br>Private Key: c1437b32cd2bbe8e84432c123fba18f9edc579002f9d8d408a101bdb5b3c7e19</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular
+                            wallet.</p>
+                        <img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode - Low Resolution">
+                    </div>
+                </div>
+                <div class="wallet w7">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">E8607B8BFBB2</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyCAIAAABnRsZeAAAHKklEQVR4nO3cQY4jRRRFURqxkF6ql9pLYcoApUBxg//TnDMvO8u2rmLwFD8+n89vAJ3fpx8A+DayAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaA2B9Tb/zr16+pt77k58+fI+/7/Enee6qd7/vs+an8JitOK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitAbGxl+2xqHfjsZIV5bxt6YmpXuvPT2Pm+z3Yug51WgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoDY0pXts3vLwu9bcE7dODvljTfsPnvjd+S0AsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEXrmyfaPnreT3bUOfnXwaO29v5a+cVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmJXtf2TnXacn696da9c33vz6fZxWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoDYK1e237eknLrpdmpHa9373ZxWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoDY0pXtziXlG+1c6O7822d+k/+c0woQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEBtb2br7s3Jv/fnGW3LvPTP/nNMKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChAbW9me7CzfeJvpG2+Nfbbzqabe99nUtzDFaQWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiP34fD7Tz/Cv7Vwl3tt37lwG39uk7nTvW9j5yiecVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaA2NK7bKdufj1x75lPvPEu22dT695777tzNX7CaQWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiI2tbO9tNKd2tFPPPHU777Odu+Gd38LO+2hPOK0AMVkBYrICxGQFiMkKEJMVICYrQExWgJisALEfn89n+hn+xs6l7Mkrn9i5wtz5WT3b+cw771c+4bQCxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsTG7rK9t3d8fuWpxerJ++68zXTq9tZ7m9R77v3qdn4aTitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQGxsZWspW73vs5PP+fvWvc923im7c0f7zGkFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYiNrWxPTN2iunOxeu/m1zfuO5+98T96482+TitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQGzpynZqR3vyyvdM7SzvrYpP7ip+dvL97lxRv5HTChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQW7qyvWfqLttnO28kPXFvgzv1tyemltBTnFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgNjYynbqZtCpW3Kn7me99zlPLVaf7fwWTl755N7fqQ2u0woQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEBtb2X7f2nXnjvbEznt/n019vzs3uFOcVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaA2BfeZbtzdTr1ym809f+e/HKm/nYnpxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVIPbKu2zfuDrduaScuhX42b3N8b1fztROeufvymkFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYgtvcv2jXYuOO/dsXryvlP73WdvvKt45+LcaQWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiI2tbJ/t3A6erD/vbTTvmVp/Tn379953apE89Uk6rQAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAsaUr22f3Vqc7173Pdt4KvPM7+r5bcndyWgFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYq9c2b7RvXtwp175+W/vPfNO97a/J5/zFKcVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSBmZfsfmVpDnrzvvWfeucGdWsqe2HlLrtMKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChB75cp25/2dz07WkPf+9sTUJnXnp3Hi3v87xWkFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYgtXdnuXEPes3NJuXPB+X/b4L6R0woQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEPvx+XymnwH4Kk4rQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQ+xP9dxUVP5bmEQAAAABJRU5ErkJggg==" width=300 height=300 alt="Wallet Import Format (WIF) Address"></div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: 5KUpDsvzwBweoBv2Ju2rQT4c4D1P2ccVMiGuvRdCUAqGLDo1tPu<br>Private Key: db2de75cbe099ded203d554f62ffbf628b3494c6f77fd083d367200c85134b7a</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular
+                            wallet.</p>
+                        <img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode - Low Resolution">
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w8">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">11BF8247AB87</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private"><img src="data:image/png;base64,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" width=300 height=300 alt="Wallet Import Format (WIF) Address"></div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In
+                                    this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: 5JzKzE4Tto1cpUmoknfdsXZupAmJ87TmLiJAMDHMAnp8qVDS7gT<br>Private Key: 9a7f1b2afaec6947a349b902dae7f21e132bffe1b8d37d901dc4c0e4b097e9b2</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match.
+                            </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular
+                            wallet.
+                        </p>
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAAAyCAYAAAC+jCIaAAAGzklEQVR4nO2dzYscRRTAfzPTmWRmkzjZjdEIYi7iwU9QY1AkG1DRKIgXz54UD8EEZEkwyCIxKgnoxYuH+DcICiYqBCN4F1FRD0FBlHxsEk1Mdnd2Pbwqdp2p7q7ardcfyfygqWGntuZVdXXVq/deVTeABeACsMgwXZNecXxXdxrAJuBfc5WJVjuXdf/WJUin2gGcd2SYHkjLYBFpGFfHXw094DfgA+Atz/9pmys20wNp1cvNY0+C3LAzwIwjg+3pZwsTyc0B4KbIZa4DWsBO/Bv+E+DbyHKAXjuXdf/+bpoPrZQMDXOVyfPmailcIPXzybsBOMjS9BITrXYu6/41E/Ohn5Ih9vSzEiaBr4A3IpfbAl4BPgPe9sjfBn5BRrrYOotWOy9S0sCQmB++GfeoZZ/OzYVJNMwaZBqMLUPPpJs8yx5HbtRmoJmTd8GkefksHeQ+xK5jF7gcuUwvGsho9TvuUWvCpOcKk6g4GZrAHcjixaVfDtICbgP+IH2Et3RM6rPabABbgau4F1CrYRz4CNhPsbPPVAJcBJ6iuqtCLRl6wA/AMeBdj/zjwAnS22o5dpX5pqccPwEfesoRwn7gVeAd5AEqDJ9V4SzlrgovmDS2DDPLUp+yLwFzwGmkTbKwHc+n3Blk6vSVI4QZZDosXM+yynvaqnAOeULXFiOOk50mjS3DOqT+L7Ckb2XRRXTR98lX3kNktmaPZz3lCGEXcC1ymV74KpfXI01kNDxVshyanELqWMp9Pkf6auQocLhAWVwcVpKhg5gPOnkZV5A/ROY2MrUe9MwfQgf4leJX9VNNRMdKW5Lm6RIjqk/W/VUjAcaQkcmlN1hdYU3k37Ud1sfvpiWD1ZnS6r6a/CEyWx1rN/HdVqF1DOEc4me96vqyLB3rOXONqCddxH87lpXpLOl6g5Z+E1LuSMdaOaF1DCk3S3ebupFXhSNWR6ZuXpaONYk8pUc88lZFx0oQ99JIx8ovd3tZI9Yc8Cjxh2hNHkcMmAs5+UYYzmR8N42On3AKf1OGlgwAPwfk1ZR51pSvQUgdQ8jS3fYmwHrEAeoa0iaR0SX2yLYLGf6PkB8B8IRJY8vQBW7Bf5qYREfmjin3RWR6iUkX2EL6/V1tuV3cbdFOHH9czhzwCPBQRKFsuQB7yQ/nsH7M2DIsIo2yBz8nbQvpKK955gU/mRuIP+9rj7xV4QoSMZFqeG0g5obbcfe8Q4hC6RP+EcIE8AXwJPlxViEhKJocQB6Eu8gPQQmReQI4DtxD/N1CHeA74D6FsrOYshGkYyk/vNb83ScQLpQFpFPllT2PPCEaMoRwEVnlnTefswiR+TK6C4I2ou4UusUtbyoEnVie1kCaxUlktNDYdhXCY0jsvY8CfxJ/mTXdLl3ge0ryFVadT4F7iW/jCWUN8A1+T35VZLa6UOEbjn06lkasdH8gzct7SEGGUA7hv/UrROY2Ekz5OuXvyI6GDU1OGyqvIUbB2PE848g0mLY7qIr0TKrVFml6bi1pIJU5hnu4fBi4n/i7R0J2vFQFrd1CLUS5vpPyFyixmMqaCjuIz+so8F7kHw7Z8VIVpgfSWIwDn1OfkduLBJkG9zG82mkBLyMjWuzdI31zpe0OqiJa5yD0qcaO86gkiDV5G8MjRw+psDNCcJWEmBuqgtYWqjq1gTcJsiQ+wbCu00JGs4+LFmpE/cnaCW3n/lL2pY2oN9bc8Cey03c5s4iroWw7VlXQ0oPq2Ba5WF/hrQy7H8bN9xq2pjrasbRO3tFsi9BTb0KYR2Y75wOXddqMpq1pZMdaQrMtQk69CaGBdKgHcUd6ZJ42o2lrGtmxltBsC62QowlE5lQ7aIIMl6cZtmOFnK4SimbZWlwwaWw71iVkWvmL/HCclZQN8WWeRWROxe7ScZ2g0kUOJvM5XSWUkJNbqkLoqTeX8dNtusBGJNQ39k6k9SbV0Asz7XpZLh0bcqFxmOv1TgeJVpgnfzVpgwCOe+QNxeqFz0Qu1/o3U3XCvNBkLWzI7N3UZyq0YTA+O5bbwI/IpgpfZV9jdaytY23HPc3mhiZrMYY05Dbqo7z3TOp7EG6T/x/7fUNRVgRpH9ErXK6kqhIyrVgTwpeUWz8r8+7I5eZOhWV1rBayYnma+oxY0wNpFlUxp0wPpLHIDfXJe4GAFn3EzOFyJVWVf0zqs3S3y/Gy6xcicwjW3ZfWbxbyXiCgxQSi4G6l/N03vmw0qY+OVZX6hcgcgq3fFtz9ZkPeCwS0aCCVvkR9gtxCXwpQhfppunSy6tdrIDrAAxT/9ok+9VoxhTp0q1A/TSd0Vv32JYgl+SVKeufKiOuSHf8BzS+oMFPjby8AAAAASUVORK5CYII=" width=300 height=100 alt="Security Barcode - Low Resolution">
+                    </div>
+                </div>
+                <div class="wallet w9">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">3FF14F2FD78B</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyCAIAAABnRsZeAAAHIElEQVR4nO3cwY0bVxBFUctwIAqVoSoUZ9Be/Ptd1ZxztsJwKHJw0YuH+vX5fP4C6Pw9/QaAbyMrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWI/TP1i//8+TP1qy/5/fv3w7+e/H9PXvn5Z09M/d57ftrf5D2eVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaA2NjK9tnOjea9FebJ//feunfn73127y/np/1NnvC0AsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLElq5sn+1cu544uQv7xlu2P+2y74md695nnlaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgNgrV7Y/zcmCc2oL+2xqg8v/w9MKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCzsv2f3LvAuvMO7r2FLvt5WgFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYq9c2b7xXunUPdpn9z7Jewvde5/GiTf+Td7jaQWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiC1d2f60S6gnF2effd+VXNd59/O0AsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEfn0+n+n3wH/Yeb115+rUTdkNPK0AMVkBYrICxGQFiMkKEJMVICYrQExWgJisALGxW7YnG82dF0l37jvdlK3cu+x7z9TfpKcVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSA2trK9t7O8txydsnMLe7IcfePGeuqT3LnffeZpBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIja1s75m6orpzDfn8ru6tiqf2ylPf0c5vf4qnFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgtnRlO7VKvLfQPfHGu787V8VT3+8bX/mEpxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVIDa2sn3jdc977/nejvbkZ9+4wd35yju3sPd4WgFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYktv2b7xIum9d3Vv33lvofts6jrv889OLXTvfUdT615PK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitAbGxlO3Un9fln773y1Ls6sfPe8NSK+tnU8nsnTytATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQGzpLdupzeLUzdETO5fBU1djp0zdOd653/W0AsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLElq5sT0xdyd3p+z6NN1723bmEvsfTChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQG1vZ3lsH3ltDTr2re06+hZ3rz53L4HvcsgV+BFkBYrICxGQFiMkKEJMVICYrQExWgJisALGxle29xerOLezU+vPeCnPnYvXeXdgTU6/sli3wJWQFiMkKEJMVICYrQExWgJisADFZAWKyAsTGVrb33Nsd7rwbeu+m7NSa+d53dO/O8bOdW9h7PK0AMVkBYrICxGQFiMkKEJMVICYrQExWgJisALGxle0b9447F6sn3ngVeOqG7s7/0c6FrqcVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSA2trKdWge+8ZbtvRXm8yvvvAq8c838fd/RCU8rQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0Dslbdsd3peNE5dyd15gXWnqVXx932SnlaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgNjYyvbZ1A3OZydryKmffXbyOd9bBk9tUt94X3knTytATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQGzpyvbZ9+0sn02tTqduu97zfVdjd/K0AsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEXrmyfaOpq7FvfOWTLezUDd2pJfSzqTWzpxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVIGZl+3pTt2yfvfH+7tTt3u+7sOtpBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIvXJlO3Wh88S9xeo991anJ9643332fRtcTytATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQGzpyvaNy8KdTrahO3e0O00tknd+Vp5WgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoDYr8/nM/0egK/iaQWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWKyAsRkBYjJChCTFSAmK0BMVoCYrAAxWQFisgLEZAWIyQoQkxUgJitATFaAmKwAMVkBYrICxGQFiMkKEJMVICYrQExWgJisADFZAWL/At+VFpgxmTHwAAAAAElFTkSuQmCC" width=300 height=300 alt="Wallet Import Format (WIF) Address"></div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In
+                                    this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: 5J3g8WJ24vWU6zTVnQnCsesiK32rEgDVZcpU8VpWsF7cMfVnCpi<br>Private Key: 1e669d93bd1f3f49c3bd5bec73bdcbfea5d31bfe8f7064bbf403d0e4aea4ea4b</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match.
+                            </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular
+                            wallet.
+                        </p>
+                        <img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode - Low Resolution">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        console.log("I'm Alive")
+    </script>
+</body>
+
+</html>

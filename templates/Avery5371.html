@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @media print {
+            @page {
+                size: 2550px 3300px;
+            }
+        }
+
+        .info-pane {
+            flex: 0 0 390px;
+        }
+
+        .key-box {
+            position: relative;
+            margin-left: 78px;
+            margin-top: 63px;
+            width: 450px;
+            height: 450px;
+        }
+
+        .private {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background-color: #808080;
+            color: #696969;
+        }
+
+        .qr-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+        }
+
+        .key-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 450px;
+            height: 150px;
+        }
+
+        .qr-image-priv {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+        }
+
+        .key-info-priv {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 300px;
+        }
+
+        .key-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 450px;
+            height: 150px;
+        }
+
+        .key-info {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 300px;
+        }
+
+        .key-pane {
+            display: flex;
+            flex: 0 0 600px;
+            border: 2px solid black;
+        }
+
+        .scratch-pane {
+            display: flex;
+            flex: 0 0 600px;
+        }
+
+        .sn-pane {
+            flex: 0 0 30px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            overflow: hidden;
+            letter-spacing: 1.5em;
+        }
+
+        .wallet {
+            display: flex;
+            border: 1px dashed black;
+            padding: 10px;
+            width: 1030px;
+            height: 580px;
+
+        }
+
+        .wallet-row {
+            height: 600px;
+            width: 1050px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .wallet-sheet {
+            height: 3000px;
+            width: 2100px;
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: auto;
+            margin-right: auto;
+
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+
+        }
+
+        .avery5371 {
+            height: 3300px;
+            width: 2550px;
+            align-items: center;
+            vertical-align: middle;
+            display: flex;
+            page-break-after: always;
+        }
+
+        .signature-box {
+            width: 580px;
+            text-align: center;
+            margin-top: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .scratch-row {
+            height: 150px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .scratch-date {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .scratch-image {
+            display: flex;
+            align-items: center;
+
+        }
+
+        img {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        p {
+            margin: 1em;
+            margin-top: 0em;
+            text-align: justify;
+            font-size: 16pt;
+        }
+
+        p.keys {
+            font-size: 11pt;
+            font-weight: 600;
+            margin-top: 1em;
+            text-align: right;
+            word-wrap: break-word;
+            word-break: break-all;
+            line-height: 2em;
+        }
+
+        p.keys.private {
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 38pt;
+        }
+
+        h2 {
+            font-size: 32pt;
+        }
+
+        h3 {
+            font-size: 28pt;
+        }
+
+        h4 {
+            font-size: 20pt;
+        }
+
+        .some-style {}
+    </style>
+</head>
+
+<body>
+    <div class="avery5371" name="Private Page">
+        <div class="wallet-sheet">
+            <div class="wallet-row">
+                <div class="wallet w0">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">{{SerialN0}}</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private">{{PrivQR0}}</div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: {{WIF0}}<br>Private Key: {{PrivKey0}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular wallet.
+                        </p>
+                        {{LowSecImage0}}
+                    </div>
+                </div>
+                <div class="wallet w1">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">{{SerialN1}}</h4>
+                    </div>
+                    <div class="key-pane private private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private">{{PrivQR1}}</div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: {{WIF1}}<br>Private Key: {{PrivKey1}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular wallet.
+                        </p>
+                        {{LowSecImage1}}
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w2">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">{{SerialN2}}</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private">{{PrivQR2}}</div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: {{WIF2}}<br>Private Key: {{PrivKey2}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular wallet.
+                        </p>
+                        {{LowSecImage2}}
+                    </div>
+                </div>
+                <div class="wallet w3">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">{{SerialN3}}</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private">{{PrivQR3}}</div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: {{WIF3}}<br>Private Key: {{PrivKey3}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular wallet.
+                        </p>
+                        {{LowSecImage3}}
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w4">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">{{SerialN4}}</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private">{{PrivQR4}}</div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: {{WIF4}}<br>Private Key: {{PrivKey4}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular
+                            wallet.
+                        </p>
+                        {{LowSecImage4}}
+                    </div>
+                </div>
+                <div class="wallet w5">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">{{SerialN5}}</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private">{{PrivQR5}}</div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: {{WIF5}}<br>Private Key: {{PrivKey5}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular
+                            wallet.
+                        </p>
+                        {{LowSecImage5}}
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w6">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">{{SerialN6}}</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private">{{PrivQR6}}</div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: {{WIF6}}<br>Private Key: {{PrivKey6}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular
+                            wallet.</p>
+                        {{LowSecImage6}}
+                    </div>
+                </div>
+                <div class="wallet w7">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">{{SerialN7}}</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private">{{PrivQR7}}</div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: {{WIF7}}<br>Private Key: {{PrivKey7}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match. </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular
+                            wallet.</p>
+                        {{LowSecImage7}}
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w8">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">{{SerialN8}}</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private">{{PrivQR8}}</div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In
+                                    this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: {{WIF8}}<br>Private Key: {{PrivKey8}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match.
+                            </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular
+                            wallet.
+                        </p>
+                        {{LowSecImage8}}
+                    </div>
+                </div>
+                <div class="wallet w9">
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(90deg);">{{SerialN9}}</h4>
+                    </div>
+                    <div class="key-pane private">
+                        <div class="key-box">
+
+                            <div class="qr-image-priv private">{{PrivQR9}}</div>
+                            <div class="key-info-priv">
+                                <p style="color: #696969;">This area of the card is intended for future use. In
+                                    this
+                                    spot on
+                                    future versions you will see a
+                                    12 or 24 word seed phrase here. Stay Tuned!</p>
+                            </div>
+                            <div class="key-text">
+                                <p class="keys private">WIF: {{WIF9}}<br>Private Key: {{PrivKey9}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-pane" style="text-align: right;">
+                        <h3 style="color: red;"><b>DO NOT ACCEPT IF:</b></h3>
+                        <ul style="text-align: justify;">
+                            <li>Part or all of the private key is exposed </li>
+                            <li>Seal appears to be tampered with </li>
+                            <li>You can’t see all lines around the scratch area </li>
+                            <li>Authentication app says it’s a forgery or the security images don’t match.
+                            </li>
+                        </ul>
+                        <h3>To Deposit:</h3>
+                        <p>Scratch off the surface and use the private key to transfer crypto into your regular
+                            wallet.
+                        </p>
+                        {{LowSecImage9}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="avery5371" name="Public Page">
+        <div class="wallet-sheet">
+            <div class="wallet-row">
+                <div class="wallet w1">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            {{Blockchain}}</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image">{{PubQR1}}</div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: {{PubAddress1}}<br>Public Key: {{PubKey1}}</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">{{SerialN1}}</h4>
+                    </div>
+                </div>
+                <div class="wallet w0">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            {{Blockchain}}</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image">{{PubQR0}}</div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: {{PubAddress0}}<br>Public Key: {{PubKey0}}</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">{{SerialN0}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w3">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            {{Blockchain}}</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image">{{PubQR3}}</div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: {{PubAddress3}}<br>Public Key: {{PubKey3}}</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">{{SerialN3}}</h4>
+                    </div>
+                </div>
+                <div class="wallet w2">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            {{Blockchain}}</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image">{{PubQR2}}</div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: {{PubAddress2}}<br>Public Key: {{PubKey2}}</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">{{SerialN2}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w5">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            {{Blockchain}}</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image">{{PubQR5}}</div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: {{PubAddress5}}<br>Public Key: {{PubKey5}}</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">{{SerialN5}}</h4>
+                    </div>
+                </div>
+                <div class="wallet w4">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            {{Blockchain}}</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image">{{PubQR4}}</div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: {{PubAddress4}}<br>Public Key: {{PubKey4}}</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">{{SerialN4}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w7">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            {{Blockchain}}</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image">{{PubQR7}}</div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: {{PubAddress7}}<br>Public Key: {{PubKey7}}</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">{{SerialN7}}</h4>
+                    </div>
+                </div>
+                <div class="wallet w6">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            {{Blockchain}}</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image">{{PubQR6}}</div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: {{PubAddress6}}<br>Public Key: {{PubKey6}}</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">{{SerialN6}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w9">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            {{Blockchain}}</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image">{{PubQR9}}</div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: {{PubAddress9}}<br>Public Key: {{PubKey9}}</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">{{SerialN9}}</h4>
+                    </div>
+                </div>
+                <div class="wallet w8">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            {{Blockchain}}</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image">{{PubQR8}}</div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: {{PubAddress8}}<br>Public Key: {{PubKey8}}</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">{{SerialN8}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="avery5371" name="Scratch Page">
+        <div class="wallet-sheet">
+            <div class="wallet-row">
+                <div class="wallet w0">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">{{SerialN0}}</h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>{{Date}}</h4>
+                                </div>
+                                <div class="scratch-image">{{SecImage0}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+                <div class="wallet w1">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">{{SerialN1}}
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>{{Date}}</h4>
+                                </div>
+                                <div class="scratch-image">{{SecImage1}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w2">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">{{SerialN2}}
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>{{Date}}</h4>
+                                </div>
+                                <div class="scratch-image">{{SecImage2}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+                <div class="wallet w3">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">{{SerialN3}}
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>{{Date}}</h4>
+                                </div>
+                                <div class="scratch-image">{{SecImage3}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w4">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">{{SerialN4}}
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>{{Date}}</h4>
+                                </div>
+                                <div class="scratch-image">{{SecImage4}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+                <div class="wallet w5">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">{{SerialN5}}
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>{{Date}}</h4>
+                                </div>
+                                <div class="scratch-image">{{SecImage5}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w6">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">{{SerialN6}}
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>{{Date}}</h4>
+                                </div>
+                                <div class="scratch-image">{{SecImage6}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+                <div class="wallet w7">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">{{SerialN7}}
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>{{Date}}</h4>
+                                </div>
+                                <div class="scratch-image">{{SecImage7}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w8">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">{{SerialN8}}
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>{{Date}}</h4>
+                                </div>
+                                <div class="scratch-image">{{SecImage8}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+                <div class="wallet w9">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">{{SerialN9}}
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>{{Date}}</h4>
+                                </div>
+                                <div class="scratch-image">{{SecImage9}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        console.log("I'm Alive")
+    </script>
+</body>
+
+</html>
