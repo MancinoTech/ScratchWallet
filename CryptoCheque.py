@@ -1,5 +1,5 @@
 #Generate new Scratch Wallets
-import bitcoinlib
+from csv import writer
 from bitcoinlib.mnemonic import Mnemonic
 import ecdsa
 import qrcode
@@ -186,7 +186,6 @@ def replaceTemplateData(template, blockchain, pub_keys, pub_adds, pub_qrs, priv_
       html = f.read()
       fileName = template.split("/")
       fileName = fileName[len(fileName)-1]
-      print(fileName)
 
     date = datetime.datetime.now().strftime("%m/%d/%Y")
     html = html.replace("{{Date}}", date)
@@ -205,46 +204,48 @@ def replaceTemplateData(template, blockchain, pub_keys, pub_adds, pub_qrs, priv_
       sec_img_ph = "{{SecImage" + str(i) + "}}"
       low_sec_img_ph = "{{LowSecImage" + str(i) + "}}"
       
+      #Create a buffer file so data doesn't need to be committed to storage
       pub_qr_buff = io.BytesIO()
       priv_qr_buff = io.BytesIO()
       sec_img_buff = io.BytesIO()
       low_sec_img_buff = io.BytesIO()
+
+      #Save images to buffer files
       pub_qr.save(pub_qr_buff, format="PNG")
       priv_qr.save(priv_qr_buff, format="PNG")
       sec_img.save(sec_img_buff, format="PNG")
-      low_sec_img=sec_img.resize((150,50))
+      low_sec_img=sec_img.resize((150,50)) #Create low-res copy
       low_sec_img.save(low_sec_img_buff, format="PNG")
 
       # Encode the image data as a base64 string
       pub_qr_str = base64.b64encode(pub_qr_buff.getvalue()).decode()
       priv_qr_str = base64.b64encode(priv_qr_buff.getvalue()).decode()
+      priv_qr_buff = "" #Clearing sensitive data(?)
       sec_img_str = base64.b64encode(sec_img_buff.getvalue()).decode()
       low_sec_img_str = base64.b64encode(low_sec_img_buff.getvalue()).decode()
 
       # Create an HTML image tag using the base64 encoded string
       pub_qr_html = f'<img src="data:image/png;base64,{pub_qr_str}" width=300 height=300 alt="Public Address">'
       priv_qr_html = f'<img src="data:image/png;base64,{priv_qr_str}" width=300 height=300 alt="Wallet Import Format (WIF) Address">'
+      priv_qr_str = "" #Clearing sensitive data(?) look into data at memory address of object to determine if data persists
       sec_img_html = f'<img src="data:image/png;base64,{sec_img_str}" width=300 height=100 alt="Security Barcode">'
       low_sec_img_html = f'<img src="data:image/png;base64,{low_sec_img_str}" width=300 height=100 alt="Security Barcode - Low Resolution">'
 
-      # Replace the placeholder with the value of the `public_key` variable
+      # Replace the placeholder with the value of the `pub_key` variable
       html = html.replace(pub_key_ph, pub_key)
       html = html.replace(pub_add_ph, pub_add)
       html = html.replace(pub_qr_ph, pub_qr_html)
       html = html.replace(priv_key_ph, priv_key)
+      priv_key = "" #Clearing sensitive data(?)
       html = html.replace(wif_ph, wif.decode())
+      wif="" #Clearing sensitive data(?)
       html = html.replace(priv_qr_ph, priv_qr_html)
+      priv_qr_html = "" #Clearing sensitive data(?)
       html = html.replace(sn_ph, sn.upper())
       html = html.replace(sec_img_ph, sec_img_html)
       html = html.replace(low_sec_img_ph, low_sec_img_html)
-
-    # Write the updated HTML to a new file
-    with open("output/Sheet-"+fileName, "w") as f:
-      f.write(html)
-
-    #Wallet Builder
     
-    return True
+    return html
 
 #Generate 10 new scratch wallets (10 cards print per page) define arrays
 walletsPerPage = 10
@@ -285,6 +286,34 @@ while len(wallets) < walletsPerPage:
     wallets.add("SUCCESS: Wallet"+str(len(wallets)))
 #barcode[0].show()
 print(wallets)
-replaceTemplateData("templates/Avery5371Public.html", blockchain, pubKey, pubAddress, pubQR, privKey, wif, privQR, serial, barcode)
-replaceTemplateData("templates/Avery5371Private.html", blockchain, pubKey, pubAddress, pubQR, privKey, wif, privQR, serial, barcode)
 
+#Creation of the public sheet and the scratch security
+publicSheets = replaceTemplateData("templates/Avery5371Public.html", blockchain, pubKey, pubAddress, pubQR, privKey, wif, privQR, serial, barcode)
+
+with open("output/Sheet-Public.html", "w") as file:
+      file.write(publicSheets) #Safe to save this public data, not needed, just used for debugging purposes.
+
+with open("output/Wallet-List.csv", "a") as file:
+  w=writer(file)
+  coordinates = []
+  for i in range(len(serial)):
+    cgiSig=convertSNtoCoordinates(serial[i], 150, 50)
+    coordinates.append(cgiSig) 
+
+
+  #Save data about all wallets that have been printed.
+  w.writerow([blockchain, pubKey, pubAddress, serial, coordinates])
+
+privateSheets = replaceTemplateData("templates/Avery5371Private.html", blockchain, pubKey, pubAddress, pubQR, privKey, wif, privQR, serial, barcode)
+#somePrintFunction(privateSheets)
+#Once private data has been printed it should be destroyed from memory
+
+privKey=""
+wif=""
+privQR=""
+#clearPrinterBuffer(?) #Including, if possible a print buffer deletion
+
+#somePrintFunction(publicSheets,1) #Print just the first, public sheet 
+print("Press Enter to continue...")
+input() #Wait for user input to confirm wallets printed correctly and sheets have been put back into feeder
+#somePrintFunction(publicSheets, 2)

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @media print {
+            @page {
+                size: 2550px 3300px;
+            }
+        }
+
+        .info-pane {
+            flex: 0 0 390px;
+        }
+
+        .key-box {
+            position: relative;
+            margin-left: 78px;
+            margin-top: 63px;
+            width: 450px;
+            height: 450px;
+        }
+
+        .private {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background-color: #808080;
+            color: #696969;
+        }
+
+        .qr-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+        }
+
+        .key-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 450px;
+            height: 150px;
+        }
+
+        .qr-image-priv {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+        }
+
+        .key-info-priv {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 300px;
+        }
+
+        .key-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 450px;
+            height: 150px;
+        }
+
+        .key-info {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 300px;
+        }
+
+        .key-pane {
+            display: flex;
+            flex: 0 0 600px;
+            border: 2px solid black;
+        }
+        .scratch-pane {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            display: flex;
+            flex: 0 0 600px;
+            background-image: url("gold-scratch.jpg");
+            overflow: hidden;
+        }
+
+        .sn-pane {
+            flex: 0 0 30px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            overflow: hidden;
+            letter-spacing: 1.5em;
+        }
+
+        .wallet {
+            display: flex;
+            border: 1px dashed black;
+            padding: 10px;
+            width: 1030px;
+            height: 580px;
+
+        }
+
+        .wallet-row {
+            height: 600px;
+            width: 1050px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .wallet-sheet {
+            height: 3000px;
+            width: 2100px;
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: auto;
+            margin-right: auto;
+
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+
+        }
+
+        .avery5371 {
+            height: 3300px;
+            width: 2550px;
+            align-items: center;
+            vertical-align: middle;
+            display: flex;
+            page-break-after: always;
+        }
+
+        .signature-box {
+            width: 580px;
+            text-align: center;
+            margin-top: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .scratch-row {
+            height: 150px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .scratch-date {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .scratch-image {
+            display: flex;
+            align-items: center;
+
+        }
+
+        img {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        p {
+            margin: 1em;
+            margin-top: 0em;
+            text-align: justify;
+            font-size: 16pt;
+        }
+
+        p.keys {
+            font-size: 11pt;
+            font-weight: 600;
+            margin-top: 1em;
+            text-align: right;
+            word-wrap: break-word;
+            word-break: break-all;
+            line-height: 2em;
+        }
+        p.keys.private {
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 38pt;
+        }
+
+        h2 {
+            font-size: 32pt;
+        }
+
+        h3 {
+            font-size: 28pt;
+        }
+
+        h4 {
+            font-size: 20pt;
+        }
+
+        .some-style {}
+    </style>
+</head>
+
+<body>
+    <div class="avery5371" name="Public Page">
+        <div class="wallet-sheet">
+            <div class="wallet-row">
+                <div class="wallet w1">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            Bitcoin</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACjUlEQVR4nO2azY3cMAxGHyMDe7Q7mFLkDrakICWlA6uU6UA+LmDjy0HSeCbBZrOA1xkD5MHwzzt8AEGKpGniM5a+fQoH55133nnnnXf+Pd6qdZTLCJCG1WBu38YD9Ti/Mx8lSbm+1ATYOHfYSJAk6ZH/aj3O78zPLUJjXq2Gbr9UT5t1R+tx/ov4dFkgXjuIOcjG/63H+V15KQeRhvBOX/zs+p1/tJZ4ewEzWJzWDlhNyUDMcO/qZ9Pv/D/xyczMBoD5RSU1fy/5eS3l87F6nN+JL/G7RajSZWl3Q6AG9nF6nN+XpzY/vQSlF6pVs6Z+YXssLdT0bPqd/8BKd6scRNQCELS1w5IWiBn37zn5Wl+lERPzgGA1SmlFWOqx2y+tDns2/c5/YCU/Ry3US66puX1dbpna4/d8fMvPW5LOoR7HcXNtbjnb/Xsyvttujf7NlC4LSmO3AEEWM7L4c/X+6Jz8rb4CTe1fQquag1q6lsfvqfk0APRvVv8azS+ysX8rUWsjHr8n5dkCtlr/0P/6+Xtuvs03gOba6ktunTAxt8Tt/j0ZfzffaK5trdHUS3fu9vg9I3+rn1cjajWYB5ReMzB3i9FnlIZ8lB7n9+WLf2v1NA+QhrAYPVh1t0G8douO0eP8vvzDfKOdult91U5ifP58Zn7bn6w/FLRg3zPA3LGdyc+q3/l3rc2f23yyjCZz0H38+vz57Py2P3k104+hfU9mVnY6jtXj/D5899uzQFgUGLzI4rR2Sq8Zi9MRepz/an42K1EbtyH01fevTs6XWQaYXepUkjSsZuNsZmPv9dVJ+ba/UeIzAAQZfVB5U9phbit4z6bf+b/bH/uTDxe1d8HrK+edd955553fj/8FHivQsqakG9sAAAAASUVORK5CYII=" width=300 height=300 alt="Public Address"></div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: 1Hz4UTPJ2w82CEB71d73U2Z3gTiZjpF7KQ<br>Public Key: 559db5d2a64717a45783e5640e550acd8ccd31db1693eece0e89f98ea80fd42eddbc783e8aaa3e01328519d7687e7296a02656d10dcfbc250a046b7be87fd0f4</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">FF5302FC5430</h4>
+                    </div>
+                </div>
+                <div class="wallet w0">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            Bitcoin</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACqklEQVR4nO2aQW7bMBBF35QCspQBH8BHoW/QIxU9Um8gHaUHKCAtA1D4XZBU6QRxEsRxpGJmQVD2W3xgMEPykybeE+O3d+HgvPPOO++8886/xFuJDsYDmOVhMZjrf+c76nH+xnyUJE1gP6aSVQ0EAUGSpEv+s/U4f2N+rhU6Wgf0kp1Z8m+5sO+rx/nP4TUAGmYzDXP3Ov/Zepz/GP80hRZzJw7JosDurcf52/I1v72AGRgPfzoBaKzJbS2Qrel3/nqU/JZcBoi/HmRxOmJxOiaD5aKGt6bf+euR89tU6HhKeaLx9Gi6rN7t6Xf+lSiHnz4hTSBNQZISRCWIE3nIp6Rha/qdvx4X+6teAIuJ+YCYjzIIifG0FvHW9Dv/Fl7D/CBGM2M8BEEvMR4W08/crtdFeJv6nX8xSt/tUzWxqpNFVEJDbdz5X+/PO+Nzf7b4+0EwH1P5HISNh0kwdxh9qn18a/qdfyO/GPSPlps0LKaBxYhTkIYv0OP8Tfh1fxUS4xkorlUQuaYBa7Ct6Xf+lcjno1iHemsEZdZLeSX289Ee+Xr+BdpdFeQNFfRqw/O7M37dP9dcDk1CE2WYgud3n/xFf55CbdJ9W7qwnp48vzvjq/88H5MgNfdHJeZj0vg9yO6jx/nb8mv9rl5znoXieQC0hb01/c5fj/X+KAgQxnyol0jzgywOYOud0vb0O389in9VvkIie1VzlyxqsexpxWG9JtyafuffxK/vJ4tXlVtzKFurf6/vtqrf+ZeirL8TzaqbD0R5Ew1Uk8PX3/3xz97XQQfjOWBgeWNtcVg678//Bd/eJfQJs9OjAUF2/hI9zn+Mb/wNaQr1pU52outzaLn/vFe+8Z/Jt0bVda6zRJvzrel3/no8fT+p54NaYmv6nXfeeeedd36P/F9pRdddSqTg8wAAAABJRU5ErkJggg==" width=300 height=300 alt="Public Address"></div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: 1PFRwwcpd4mVtPYyMYN5z6yVzcFTuR729D<br>Public Key: 29ab8967dfc35858e136e2d4cf42f79e705484534a0fb65bcfe55b5b1fbcb454948187d9ff3958f60194bc47a84199f1a388b5e325f7501cefd6fc67d38ac70b</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">1AA6DFCED1F1</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w3">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            Bitcoin</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAAChUlEQVR4nO2aTYrcMBCFX0WGXsowB5ijqG8wRwq5mXWUPkCDvBxQ87IoyX8kHYa4HYtULUT/fIsHD1lVTxbiKxW/fQkHjDfeeOONN9743/FSqgNiD4j0gH7FWP+7HqjH+J35QJJMAMJNpCz8FLnCkSS55l+tx/id+bHsUJHeEbF3BMaLulp28qF6jH8NzwEPmZd/rsf4v+O77Q8hvWVd4HNHjMfqMf41vCc5AEB8z3XpAbkCIJmP1mP8PnzZv1GfxA4Sbl2uy4WCzUP6bPqNf16yyScFcLkuwDa9tHyySV5EOh2CEdJDyPQQAI6IOgRb/9w0z8FnPWb1ENbfAAC+HMdyPVCP8Xvx0PAiJEeEBHDwJAdPas9FZk0/NAIZzqbf+D+UplMDqrVkXjTMZKr5lfnbIo+FeZpPzl768rieN7H52xpf96+fTGYG4KfA2efpdDZ/2+XHeld0BYBw68ABTg9m+Z5K0nFe/cb/unTwKRGGJxD7RIk9hPAJjJsI+mz6jX9edbD1d0EUlyXcBMT4pg2WhNSvTD6bfuOfl/pLAET8SJo6AwBk2taAv3c8Ro/x+/LT/AsAcNSBaDH/pgpa/9wiP82/jppVhTT31PXWqDTW5m97/GL+1RALcOXrckiyfKNRHlyXbuJi7cpp87ddfvH+ZEjQ+ReBGToYh5vdH7XNz/lk1PfrHsIf0qFu509Z86/WY/zO/CK6EiFTbbeiSLkJPlaP8fvw2/frGN9zzbT8o0MYAMT+Xrmz6Tf+eW39FeBCxI969Jbo6kI5Ro/x+/Lr+8HyGJ7vhFGaaLs/apQv/pZy0yyUp1vfeTF/2+Pn/BnzJ5aGarMcocd444033njj/wf+J+TeyWV35NsCAAAAAElFTkSuQmCC" width=300 height=300 alt="Public Address"></div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: 1FG2bQpagY85KJ2ZfUBY1qJq7rvucZpbqt<br>Public Key: ceb961e6f1d74dd00f3194464c3593c256975b97c669b6b4c34a68820b9966cead3e883d232e78cf81d1d0d7c35a94227940271839494b34a61c8bf1960b0068</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">5D4899F460B9</h4>
+                    </div>
+                </div>
+                <div class="wallet w2">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            Bitcoin</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACkUlEQVR4nO2aQY6jMBBFXw2WemlukKOYm436SH0DOEpugJctgf4sbAKZnkjpVpIBqWqRBPwWX7IqrvouE9+J4de3cHDeeeedd95552/xViNgXQ7lsSx0eVnrXqjH+QfzSZI0gt7b2SBK1pWlRpKka/7Zepx/EB/qd24hfYBBMy2LcxD5+t3e9Dv/A966bKb3trkk8f/V4/yP+fD3i9TPBjSTEWv+vlKP84/ll/2NAjKI3KLh9GmQA5Y+YGuB7E2/83fxg5mZtWAdjez3+U2ksREw21pO71a/8zei5O+aofUPOX4aQ4vVxH6dHucfy7M2P9LYiDQCxEsNHSWgUWmh+r3pd/4eXhqBcurSCHJAPUA6m0H8tPK4U/3O3wzVmKBsLQBRVzEunOfvIXnrcoCkmr8lnclmDO1s1sUJ616ox/lH8WwzdGyknvUQlmomj9Wk9Pw9Jm8djUrVXD4AaZxNfQ4wnDx/D8rX/qj0QoARQcNJ9TkJDJb2d3f6nb+bVx8l0jnUqjlpgqFcJ03/4J+tx/kH8JvzF9iev+VMLns+ev97UH7TH6mPE1cF1fLYu79xVL76V5f7fVIpomGpn2tj7PXzIfnFf84tIk5B5Nk2lnP6CACXd3vT7/xd/HCaKPNX1jbFcJbOZgwtbMd1dqrf+VtxbUQuW3vxLJP8fuH4/Do/WY/eHID8pvoL8PuFI/NrfVUu9Nt5GYiNE6UTfqke5x/MZ9tsaPl3fj9NZbCjmhwv1eP8c3jrgHprlM1Wf6Ms7F6/89fxZX4SGlk6v5V+yNLZ0GA+/3xwvthUUPzncmGUA4vJ4fMbB+U381dc5jc2nnS1nief3zgm/3V+co0yOjmhzeDO3vQ777zzzjvv/BH5P0dsroXe6rtmAAAAAElFTkSuQmCC" width=300 height=300 alt="Public Address"></div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: 1JeDnKMZny6ms8rFoQZqspRgkofWpgj7L4<br>Public Key: de2fba9c738ee5ce3f4194ab8a574d9cdc3d7a2ed7b617972cafa69b549b3dc06104f642857905e296e2ddda8eae5a3d83f775332175c96a84fb06d2c5cc5256</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">8ADFD0C6D43D</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w5">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            Bitcoin</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACdElEQVR4nO2bTYrcMBBGX8WGXtqQA8xR5JuFOVJuYB9lDhCwlgGZLwtJdjdh6AzxdFqhtOhuW2/xQVGl+lGb+MhavnwIB+edd9555513/j3eyuoBNrOJzWyKPRDr3vRAPc6fzAdJ0gosdpFe7bLnXZ0kSbf8Z+tx/iS+L99xhPAdCAJj+GGCnyYAgy49SI/zn8vbBBDWTmbjE+hx/mR+GUEzmxHeemz613qc/yu+xudBQATB1hNm0DJ2yQCuWyDPpt/5P+IXMzMbwaZ4EcSL7NsKwJbT58fqcf4kPvvv4aEibibiZnXjtoH5bPqdv7NK8TNImgHNQ8rvNNOJsO/md8+m3/k768q+UgKG8khQoryrRbDbtzW++KpWclVEWLvqyXS6+nD7tshX/z0smP03Ia1QH5Ujtdu3Nb7YN6ydpLXLpi32rYY/Ht2+rfEcXnucv5ISmncmrOD+2yS/95/7BPGrWCaDMANw9Df2IunZ9Dt/Zx3DoXzWhnWP2UpINd1y/22Sr/nzbmStcBOpb5bbt0nebNzsqHXN7KI82p+i1XH/A/U4fxZ/E5+Bmiun3MkqG0Py+Nwmv5+1ewTOBVFNoveayeNz67xNsY6Jwlv5ZTZu9g7/2XqcP4G/yq9KpB6kmjXX+cKeU7v/tsZfnb9Ap9rLSPVj7XRwbt9G+Xz+ruWl5niR5thT25WSTY/U4/zJfCw3nHNUXkYwe0n5Ygew+f2N/4RfXhI21ft1ZXT0tl+Hfnr9zt/n8/z39UXKNymXcbNSHTeh3/ljXde/db6fd8rMkDr49/yqQf63/Lkk0bWr4fc32ubN/9/tvPPOO++88w/nfwGoJROMN+dupgAAAABJRU5ErkJggg==" width=300 height=300 alt="Public Address"></div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: 15zghBSk9BkRi8bBcjgjqzib2kmLFziAP2<br>Public Key: 48148d9b850ccf44e3c4b210d94c2d9446f723e057b2aef8b112aec1a478bb9795898b02dc501f1d9484e90c91da511d3f065ad288aef7ed501335125a0d5cb2</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">A7A061C55B97</h4>
+                    </div>
+                </div>
+                <div class="wallet w4">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            Bitcoin</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACb0lEQVR4nO2aTWrkMBBGX40Ms1RDDpCj2DeYs84N7AMF5GVAzTcLSbY7MGRCOk5rKC0KC7/FB0WpfiQTH1nLjw/h4LzzzjvvvPPO/423ugZs4mq7gbX9m07U4/y9eCRJjJKkFARsJkqMKeiAzI+m3/l/49caoVK6GmO6GqwDmgEzG87W4/yX8UGaCZIS2PT9epz/BD+82RtgWiZMxFcT67l6nP8aPkqaAUblaiDIJkAq2zP1OH9XfjEzswvA+lM2FTMAXEv5fK4e5+/El/P5Zkh5taOJtwPMR9Pv/DurND9bVXX4GhPcnNneH/XHt/hdLybii+1/tFzAiC+Dak98hh7n78tv841cYlVSvimootqkw+O3Q76dz82Nmps5zrSi6nL/dsYf4pc6lcxAzBRPKwW1wHb/9sc3v7UIbWdxc7JSnWT5+dwlj7ZFKZ2jai01JopXd+P+7Y0/+re4MUG9NUpQJtFzzH4+98m3/JugNrxlUrl5td0Pun+75Gv/u1xAy3MeYB0ydXQFNv4GWJ9av/Ro+p1/Zx1S71ZL1SY40aoqguffPvmWf9N2TXTof1uT5Pm3W/4Qv2W/t0ZzzEfQ47dfvh7IkmD9WV5dlfvBvaY+U4/z9+JLfdWuFULWcgmwWN0a61OmFF6n6HH+S/ixJWGb4qsxpiBGvVodV/r9Ua/8bf/bet0Zav0MHCZZnn+755f9Lew25Jg9fv8X3iauxqjcvlJQ+foePc5/jm/BGgX1LWzILL9eEGvIsD5lLc/bI6xH0+/8O6v1vwBlTFWHHG+uGzz/dsm/fT+5v7VSNQLIDXk0/c4777zzzjvfI/8HB6Mcy6SvWC0AAAAASUVORK5CYII=" width=300 height=300 alt="Public Address"></div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: 1MxBKxJYPS19ZomyHrr8wWZY8KJX3j4Uxt<br>Public Key: d22fdbfd61dce1ec7a470e45772e15fb1bfe4000f4021fb21e5aef26d6a9c75820b926904fe24f4f3d8e3594175ba8d1da0f498d63101ce09db01691624b5cb9</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">AF3AD5100A71</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w7">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            Bitcoin</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACeklEQVR4nO2bQYojMQxFn8eGLCswB8hRnBvMkfpMuUHVUXKAAdeyweHPwnZVJU1PT0MS4kFaJDh+C4GQJX07TnzHph/fwsF444033njjjf+Md9UCMIeyZNpfHMxt7/hEf4y/Mx8lSQncEdAIuLfzTu6IlyTpmn+0P8bfiQ/1e95DPIEg4xh+BzFfHAAOfH6SP8Y/li+HdDwHmA76ODy9uv/GX1u4WWv6lRDk4CDkD/yr+W/8v/GDVKrukYtzR7w0DjW8kvIt/2h/jL8PX/N3KpXWQzzt5Jh/ZhfPIQO1CD/JH+Pvy5f4rnVW0x4n5rbc7j3DH+Pvy7MZfmICGHL5rZ7PQ0bj+tur+W/8F6bFYMgQk1fdSPWjVGeLb7+8c/uLI553NbQjAIPkjkMVPp7qj/H34uv5HNNNJktN0/LSaPnbK9+imvySpl7E5FWnoiFTdy2+HfJLL6UloC2JozLbmFt8O+SX/tlr7Z+JRdDw0oidz/3zraHKwBzQOO9E1LtzbyXSF7sf7JNf6u+yTIsgOdRDetN9Wf52xm/0jVXGALb9FVZ/u+XbfNTSdL1pKKW36humX3XKL/NvbaMAvyhZtTBbf9Uvv42vUo3lppMGrP52zG9Uq3ZSL5Nwq7pFk7b62y9/9X6yvpXUOLw7mANMh3dXR6jX9N/4T22btcnX1mqVK6OWiyXL3w75zf1CPYZTm3+jlothWf/8v/DT3mt96V6CPO3rw+gO/Df+ym7fT8KQ0HQETYciTQbiKbRnOq/mv/F/txbfQcAMxFPIjiHhypCEF9MhN+7V/Df+C1v1Sa4HoiJXjkC7Drb62x/v7P/dxhtvvPHGG/90/g++wyaufHNjOQAAAABJRU5ErkJggg==" width=300 height=300 alt="Public Address"></div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: 12uTmmiFfMZzw9NVjjv99W8neSrnGnRT7n<br>Public Key: ea4a5955e051c58a399f920df53a7f26e04fa811f6d99f627eb0be75587d3f00d013b9356b7eb183154a74e6fadbe7fb7103fce2530b2280e3063efda242d2f1</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">B7C8DDDA5B0E</h4>
+                    </div>
+                </div>
+                <div class="wallet w6">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            Bitcoin</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACgklEQVR4nO2aQa7jIAyGfw+RuiQ36FHIzap3pLlBOEpvQJaVQP8sgJCoeuo8Ke2Ekb1AJfkWv+Sa2NhC/MT8rx/hgPLKK6+88sor/x0vxQbkZQIALAOApb6bPqhH+YN5R5IM5SFnACJjEplgSJLc8+/Wo/zB/FIj1IUk8GMSAIbF0zJ8Wo/yb+L9NQLuPhRP/3M9yh/Kk8EQfjQEYJ6L47PrV35v9eC1BLAA4uY0AEhC4CEEgK2Xz6Zf+b/ivYiIjACwXAgXDGVaLpQJKafPn9Wj/EF8jt8WofTXuPtl92f02fQr/8JK8WOZP7gkY66PSEbA1W0uoeaz6Vf+hbFY86VhKYeba0N9pv7tjN/6F9m1cX1nmN0NS/Vvz7xMy4Di2mUAZxvBGUnkxkdOrXIkn1S/8t9ajt7ZkmQweQHsej5brluN3/74kl85xpJQwZIlVoEcyXBh/R+cTb/yL6z4DesJvIZudnwoz/T72zEvk62hy1A+xyJjEn5dSc5Ier/RJ78J01IaBWwKXsBG5Mahxm+P/LDd2AD60URxTOViy08DxP02tWg6m37lX1hJjGvq3Jr8WOvfmoJp/HbMJ8mtX39tVdFDcn7lx8/rUf4QPh/DUvqDArr7hQILADAUAAJ3HyI/o0f5d/AtgxIZAc6LyDbJQtL5up75Nj9ZLjRYbjXKEKWNe/7depQ/iscmeWIwLL2isF5dtSJJ86sO+e01lQtl4CpnzbPddZLUv/8DTwZDuTFCJgA5dGegbs+uX/kXvL8+BF5EWjgDej/ZO1+7RnILyPUvv8bWc9D8qlO+zl9lq7MabckfZmp+1Sn/ND/5tBDYTLqfTb/yyiuvvPLK98j/AeAo4dNt4vk5AAAAAElFTkSuQmCC" width=300 height=300 alt="Public Address"></div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: 1LSeeTTCt5vKsVqjHZkVEhcdUJTzzvE2yd<br>Public Key: 6ef361d0e70deed66033c8026c2690f4577ae8f04a5e63894307f19a52d16ea00a7dbc8b71526160c453752a3925baf18f102dbeb541cbac5c98baa0859c4382</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">9CCE6808490A</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w9">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            Bitcoin</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACeklEQVR4nO2bQYrkMAxFnyaBWjo3qKM4N+szzQ3io9QBBuJlg41mYTuVVNPT05AOCUgLk0re4oOQbEkuUb5j4de3cDDeeOONN9544z/jpVqPjGSpS+yB2L6NB+oxfmfeq6rqDAS5aVlwCRnpVFVVt/xP6zF+Zz7WCFWds+DnLAQRAUBE+qP1GL8P33981SWIXYI4HK/H+J/lRYYshCEL4a4fi+Oz6zd+ay1+nQIR8FPu8Zp7iH1SIqy9fDb9xv8XH0REZACIN5Ux3lTeZpCRXI7Px+oxfie+xO8mD2epi0voy7fT6Tf+C2vFT6c60a2f/NxV33pNtYSazqbf+H/b6vwsfhOqumzHGoY/LYzPpt/4L2wTv6CqqS6TS+jkVMGpWvxeki/+1clpa1M51eJanWvrqvnc/Hs9vsZv2WHnrnQlS8DSnIw3/16VX+fnmpVrLq7+3bwz/16NX+K3zhees4Ty83mSNv9eka95V2daBeRqpi7v6nZs8XtRft2fDNIl/OOmhAEBl3ol9gnIvdVHl+Rb/GrieaBqWRkoG/Nykrb4vSRfJrz+cVMgC17fS8O5jIPDPSHjgXqM35cvZRDuXQhDp4QBWqWUkLc5i04H6jF+L74dmJ22/tUMz/q3mPWfL8sv++/Sv6LWQqsFZ/69NP+8P9ku2S0D39iDf9j9q2vzS39DRrLgZ9ApShkCr2/qnFS/8Z9YC8w4gP8NSuwSYeiS4FJPEIDYovl0+o3/Jh/uaXleduJl0n9+/cZv7PV+rICgXrOsXpZ21iF6jN+X384XljHCZhxcqifrX12RXw2MgJf5r2o9adl84aq82P+7jTfeeOONN/5w/i8kLfim/E0CtQAAAABJRU5ErkJggg==" width=300 height=300 alt="Public Address"></div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: 1JiV5j5Hjn1QHAt5fcw1H9hV5KRGLHJNAK<br>Public Key: 5ed59d6754d8587d6628038ced6cc86b5fdfef20d0febe1b74917dae8a6cfacf96320f2994ed054bc0ee0d34b815080b316877a3fbeb05668b61866d39ca5fde</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">67B527191CF2</h4>
+                    </div>
+                </div>
+                <div class="wallet w8">
+                    <div class="info-pane">
+                        <h1>Crypto Cheque</h1>
+                        <h2>Blockchain:<br>
+                            Bitcoin</h2>
+                        <p>Use this scratch wallet to physically transact digital tokens. Any
+                            digital
+                            assets
+                            deposited to the address become
+                            physically represented by this card until the private keys are exposed by
+                            scratching
+                            the seal.</p>
+                        <h3>Number of Keys:</h3>
+                        <h4>Single Key: 1 of 1</h4>
+                    </div>
+                    <div class="key-pane">
+                        <div class="key-box">
+                            <div class="qr-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACmklEQVR4nO2aTWrjQBCFv5oWZNmCHCBHad1gjhTmZuqj5AAD0jLQ4s2iW7KNyXgCjkcKVQsjyd/iQfNUfzLxmcg/PoWD884777zzzjv/EW8tOurPcALm9b/hgXqcvzOfJElTe6gRMOsXs4EgSdIl/9V6nL8zP68OTdNi5H4xmJ/qqZpZ92g9zn8Rn18KpLeunrTG/63H+bvy0hRE7oPI/Q70OH8fPko16w4sZgPNujYAksqj9Th/Vz6bmVkPNeumKchepyBgqeXzY/U4fye+Fk6nIaXyS1mv+gDEywHm3vQ7fyNa8xMlqL1Qqf1RfSun9ba2UOPe9Dv/99gan6UjjYsBQZZW04q5x874vel3/kZU/6YpSCNBpFMtRRBpAtIU5P49JF/PV5raq5k0gcZaTofVxlF+vkfmbQBgfqqnagOLQXw3jVG65r9aj/P34s/qq+paabVueyuXWlq5fw/Jt/4oDwbQtdybtJiYQRBEtrAm5b3pd/5feHtVAWKBbB02zB3kHtrMI/r86qB8d7oUs6E09abch2LE36b8c+kEy8rtTb/zN2Jd7gatNm290MVOOKyJeW/6nb8R2gIu+t9Wbk14//sN+NlMY3w3/epBYyzYwGJtSej596h8zattAllXR8iIAHN3NprUY/Q4/xV8G1KqYAOgce62/YJ09vXOTvU7/1Fc+JdQqk2Tlg7mZxnzc4FYvH4+Jr9Ztw2hW+k8reV09W8seP18SH7bH8HpVDUSpDGeb5L8fL8FL709yV5VsGHuaiVNmrYVxN71O38Z3fWjxcgGykMopAmRX979+6tj89v3k9a3/rdG7jfrPlSP8/fht/kkUIeUdVK5zbRiWzx4/j0kf/X95PXtxaO96Xfeeeedd975I/J/APupsUx3jbVsAAAAAElFTkSuQmCC" width=300 height=300 alt="Public Address"></div>
+                            <div class="key-text">
+                                <p class="keys">Public Address: 1Mirob4EgZuJdNdyBBt5DLwkUgp6mEC9UN<br>Public Key: f89b14622bc6b3289545527d7ee69593fe0f261d8b28c43085b17cdb2601b1a1e6c82581c98aa783c641212f73236c290b639f7dadccbd246fd853b337dbd6db</p>
+                            </div>
+                            <div class="key-info">
+                                <p>Use this code to load the wallet with funds, check wallet balance and verify
+                                    the
+                                    authenticity
+                                    using the My Scratch Wallet Tools mobile app.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sn-pane">
+                        <h4 style="transform: rotate(-90deg);">2D7ACB6D8CA5</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="avery5371" name="Scratch Page">
+        <div class="wallet-sheet">
+            <div class="wallet-row">
+                <div class="wallet w0">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">1AA6DFCED1F1</h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>12/14/2022</h4>
+                                </div>
+                                <div class="scratch-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAABkCAYAAAA8AQ3AAAAC3UlEQVR4nO3dzVLbQBCFUZHi/V+ZbEJhqPCTWCP6Y85ZsaCmVLZ83W61Rg/HcTwdAAG/vvsAAL7q8ebvh287Cvi6518Eztf9PKmwgAyBBWQ8fv4v8F9WX8xZtb6fmoOpsIAMFRYrrGyMr177adHanECFBWQILCBDYAEZAgvIeDjcSwhXqDXyR+aCCgvIcC8hK5THGs5ee2Sl8omp92u6lxDoEFhAhsACMgQWkCGwgAw3P++tugUMm1JhARkqrH3V5pners2GVFhAhsACMgQWkKGHRdXKXpY+2VACq8GHEw6BRVfl6qYvhBMJrPlWjQhcMXrgCTScStMdyBBYQIbAAjIEFpDhqTlwjdLFB3u6A9zr3qfmqM6uM+3b7iO350VxHKP0Wm/lrDksb/A6vhTgDz8JgQyBBWQILCDDvYSscDsus6oHt2pd/djBzGFBX+lK7D3MYQEdZ81hVRK+tu7t2mevv/pbtPha12z360iFBWQILCBDYAEZAgvIMIfVsqLJurJxqzHOqaYHVm3ocLurNj9M9f2rHvc/mx5YvFYaa4DTTQys4l5KV81hsU4xwFefz+Me06bpDmQILCBDYAEZZ/WwalfdausCx8ymO+8zh8XW7g2s0u4Et2tX1n27PmxNhTVfeXuZcZfFadN0BzIEFpAhsIAMgQVkaLpTZZbuxcpjHvV6qLCADBUWNbWn/Ky0eq5wxdr38FxCoENgARkCC8gQWEDGxKb7w/F6i9YVauuy3vN5V3wPVx3zpIb7cRwzA4v31baXuWJ9NjI9sCrbwPhQ/hzjqooPbHc+Tw+sospMzFV7eFUCYOyHlBea7kCGwAIyBBaQIbCADE134K2xM2kqLCBDhQX8zcRxFNvLAB0CC8gQWECGwAIyBBaQIbCADIEFZAgsIENgARkCC8gQWECGwAIypt/8XHwc1zaPXIKrqbCAjKkVVrGa2O6RS3A1FRaQIbCAjOe9mwHG+w2EK3jZU+X+cAAAAABJRU5ErkJggg==" width=300 height=100 alt="Security Barcode"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+                <div class="wallet w1">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">FF5302FC5430
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>12/14/2022</h4>
+                                </div>
+                                <div class="scratch-image"><img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w2">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">8ADFD0C6D43D
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>12/14/2022</h4>
+                                </div>
+                                <div class="scratch-image"><img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+                <div class="wallet w3">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">5D4899F460B9
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>12/14/2022</h4>
+                                </div>
+                                <div class="scratch-image"><img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w4">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">AF3AD5100A71
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>12/14/2022</h4>
+                                </div>
+                                <div class="scratch-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAABkCAYAAAA8AQ3AAAACu0lEQVR4nO3dzU4jMRCFUTPi/V85s0DRtIafYUgc6qPP2cACtUwnuarY1fbTWuuyAAJ+ffcAAD7r+fD707eN4rGuFWXl/9013tp9WKs5Zu7nosICMgQWkHH8Sni2yfcd/6+vKvwUI/NAhQVkTJx0Pyb7jjHtmLi9HH5OuY/wVVMXN0y6Ax0CC8gQWECGwAIynv/9J8CNRrYIfMK4cauwgAwVFjzOtDaB92hrALiVwAIyBBaQIbCADIEFZAgsIENgARkCC8gQWECGwAIyBBaQ4RCKznXh9J6WDxjwtnEPP996CIWwAx7mXtvL7DiB5t7X3ak85sp412qOea3euMcWIibdgQyBBWQILCBDYAEZ2hooqkxeX1U/Y9Pusz3dgY579WFpa/ijNubKeMtq93hsRajCAjIEFpAhsIAMgQVkCCwg414PP5fsXgEZu8Lyjtp4ea22CvllKiwg44wV1pXesReV8fLa6apjFRaQIbCADIEFZAgsIENgARlnXiWER6n2/o1bhVRhARkqLHice/e87eqlm9qjZ8dRoENgARkCC8g4nppzy57uwM8zbg7LMV9Ahq+EQMatx3ztsHurFkeTvZi6dP2R4pjX2t9+cO9rT73P2hqADoEFZAgsIENgARkTnyU8tlrsbLnYce1pk5TMUns/j2t5UmEBGRMrrKNiWwP8bVflra0BYCqBBWQILCBDYAEZ0yfddzrFMvAnGDMZKiwg48wV1hmWgT9izD/DqapNFRaQIbCADIEFZAgsIENgARm3HvO1y6lWPvhvk96r3+1UnxUVFpByWSdLadZaXnfeN/W9YXsZoENgARkCC8gQWECGwAIyBBaQIbCADIEFZAgsIENgARkCC8gQWEDG8RCKiQ87sp/XnYzjflgAox0rLJuiAVcjC5kzn0sIvG3iLsRr2Q8LKDGHBWT8BgmqZMO12DckAAAAAElFTkSuQmCC" width=300 height=100 alt="Security Barcode"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+                <div class="wallet w5">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">A7A061C55B97
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>12/14/2022</h4>
+                                </div>
+                                <div class="scratch-image"><img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w6">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">9CCE6808490A
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>12/14/2022</h4>
+                                </div>
+                                <div class="scratch-image"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAABkCAYAAAA8AQ3AAAACkUlEQVR4nO3dwU7DMBBF0RTx/78cVpWygBbauPXF56xYUKsahcckmTiXbdv2DSDg491fAOC3Pg8/X/742Wtn9tfP/Vcj66HWfGe142LXYQEZAgvIEFhAhsACMgQWkCGwgAyBBWQILCBDYAEZn/d/5S3KzzeO/O7luqxulWn0oXRYQMasHdZV6b+SZwn5jq74RDosIENgARkCC8gQWECGwAIyBBaQIbCADIEFZAgsIENgARkCC8i4bJ51grpVnjHdBRaQ4ZQQyJj1VfXF7VSK9ajV+Xg2UKlF+bgYsfYzvKoe6BBYQIbAAjIEFpAhsICM4xzWjHcJgfdylxDgEV7zdZ7yvE2lzuawXrP2tGc4OiwgQ2ABGQILyDhew3r0vHXk+e6059I3FOtRrDMLsr0McMtMN2R2uzWcp1iPcp1Z0OxjDfCTSniX/5FNx0V3IENgARkCC8gQWECG3RqADHNYQIaxBqoq4wflsYbZ5vMMjp6oWI/quizKRXcgQ2ABGQILyHDRnaraVjvFbYemo8MCMnRYVNXubJbuHk9LhwVkCCwgQ2ABGQILyBBYQIbXfJ2vWI/auizKWANVwnBBdms4T7Ee/uhJ0WGxbZ1hyWPACu8FuegOZAgsIENgARmzX8MqXlcw1jB+3ZFrF4+5ZeiwgIzZOyxjDWPXrq47cu3SMbccHRaQIbCADIEFZAgsIENgARmX7fG7I6+4Kwbct8qdzV2HBWSYwzqPOazxijUeabkzER0WkCGwgAyBBWQILCBDYAEZAgvIEFhAhsACMgQWkCGwgAyBBWQILCDjmYefr1vTFF/lNErpwdmjWp1r35eT6LCAjGe3lxnVURS3+iiq1ddxsTgdFpAhsICM457uAFP7AigifsfUlxa9AAAAAElFTkSuQmCC" width=300 height=100 alt="Security Barcode"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+                <div class="wallet w7">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">B7C8DDDA5B0E
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>12/14/2022</h4>
+                                </div>
+                                <div class="scratch-image"><img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+            </div>
+            <div class="wallet-row">
+                <div class="wallet w8">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">2D7ACB6D8CA5
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>12/14/2022</h4>
+                                </div>
+                                <div class="scratch-image"><img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+                <div class="wallet w9">
+                    <div class="sn-pane"></div>
+                    <div class="scratch-pane">
+                        <div class="signature-box">
+                            <h3>
+                                Signature:_____________________<br><br>
+                                Exchange Date:_____/_____/_____<br>
+                            </h3>
+                            <h3 style="letter-spacing: 25px;">67B527191CF2
+                            </h3>
+                            <div class="scratch-row">
+                                <div class="scratch-date">
+                                    <h4>Manufactured:<br>12/14/2022</h4>
+                                </div>
+                                <div class="scratch-image"><img src="data:image/png;base64,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" width=300 height=100 alt="Security Barcode"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-pane" style="text-align: right;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        console.log("I'm Alive")
+    </script>
+</body>
+
+</html>
